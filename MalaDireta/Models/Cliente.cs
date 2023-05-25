@@ -1,11 +1,12 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace MalaDireta.Models
 {
-
+    [Table("Cliente")]
     public class Cliente
     {
-        [Key]
+        [Key] //Mudar no futuro para ClienteId
         public int Id { get; set; }
 
         [Required]

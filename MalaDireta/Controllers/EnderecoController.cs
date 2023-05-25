@@ -32,6 +32,16 @@ namespace MalaDireta.Controllers
             }
         }
 
+        [HttpGet("{id:int}", Name ="ObterEndereco")]
+        public ActionResult<Endereco> GetEndereco(int id) { }
 
+        [HttpPost]
+        public  ActionResult Post(Endereco endereco) { }
+
+        [HttpPut("{id:int}")]
+        public ActionResult Put(Endereco endereco) {  return View(endereco); }
+
+        [HttpDelete("{id:int}")]
+        public ActionResult Delete(int id) { }
     }
 }

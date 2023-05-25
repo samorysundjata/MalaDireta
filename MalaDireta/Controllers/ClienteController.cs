@@ -1,6 +1,7 @@
 ﻿using MalaDireta.Context;
 using MalaDireta.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace MalaDireta.Controllers
 {
@@ -20,8 +21,8 @@ namespace MalaDireta.Controllers
         {
             try
             {
-                var clientes = _context.Clientes.ToList();
-                if (clientes.Any()) { return NotFound("Escrever"); }
+                var clientes = _context.Clientes.AsNoTracking().ToList();
+                if (!clientes.Any()) { return NotFound("Não há clientes!"); }
                 return Ok(clientes);
             }
             catch (Exception)
@@ -30,5 +31,30 @@ namespace MalaDireta.Controllers
                                                "Ocorreu um problema ao tratar a sua solicitação.");
             }
         }
+
+        [HttpGet("{id:int}", Name ="ObterCliente")]
+        public ActionResult<Cliente> GetCliente(int id) 
+        {
+            try
+            {
+                var cliente = _context.Clientes.FirstOrDefault(c => c.Id == id);
+                if (cliente == null) { return NotFound("Não encontrado cliente com o número {id}");  }
+                return cliente;
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+
+        [HttpPost]
+        public ActionResult Post(Cliente cliente) { }
+
+        [HttpPut("{id:int}")]
+        public ActionResult Put(Cliente cliente) {  return Ok(cliente); }
+
+        [HttpDelete("{id:int}")]
+        public ActionResult Delete(int id) { }
     }
 }
