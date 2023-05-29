@@ -38,13 +38,13 @@ namespace MalaDireta.Controllers
             try
             {
                 var cliente = _context.Clientes.FirstOrDefault(c => c.Id == id);
-                if (cliente == null) { return NotFound("Não encontrado cliente com o número {id}");  }
+                if (cliente == null) { return NotFound("Não encontrado este cliente");  }
                 return cliente;
             }
             catch (Exception)
             {
-
-                throw;
+                return StatusCode(StatusCodes.Status500InternalServerError, 
+                    "Ocorreu um problema ao tratar a sua solicitação");
             }
         }
 

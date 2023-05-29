@@ -33,7 +33,20 @@ namespace MalaDireta.Controllers
         }
 
         [HttpGet("{id:int}", Name ="ObterEndereco")]
-        public ActionResult<Endereco> GetEndereco(int id) { }
+        public ActionResult<Endereco> GetEndereco(int id) 
+        {
+            try
+            {
+                var endereco = _context.Enderecoes.FirstOrDefault(e => e.Id == id);
+                if (endereco is null) { return NotFound("Endereço não encontrado"); }
+                return endereco;
+            }
+            catch (Exception)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, 
+                    "Ocorreu um problema ao tratar a sua solicitação!");
+            }
+        }
 
         [HttpPost]
         public  ActionResult Post(Endereco endereco) { }
