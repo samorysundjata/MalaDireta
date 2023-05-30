@@ -49,12 +49,46 @@ namespace MalaDireta.Controllers
         }
 
         [HttpPost]
-        public  ActionResult Post(Endereco endereco) { }
+        public  ActionResult Post(Endereco endereco) 
+        {
+            try
+            {
+                if (endereco is null) { return BadRequest("O endereço é nulo!"); }
+
+                _context.Add(endereco);
+                _context.SaveChanges();
+
+                return new CreatedAtRouteResult("ObterEndereco", 
+                    new { id = endereco.Id }, endereco);
+            }
+            catch (Exception)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError,
+                    "Ocorreu um problema ao tratar a sua solicitação!");
+            }
+        }
 
         [HttpPut("{id:int}")]
         public ActionResult Put(Endereco endereco) {  return View(endereco); }
 
         [HttpDelete("{id:int}")]
-        public ActionResult Delete(int id) { }
+        public ActionResult Delete(int id) 
+        {
+            try
+            {
+                var endereco = _context.Enderecoes.FirstOrDefault(e => e.Id == id);
+                if(endereco is null) { return NotFound($"Endereco com id={id} não encontrado!"); }
+
+                _context.Enderecoes.Remove(endereco);
+                _context.SaveChanges();
+
+                return Ok(endereco);
+            }
+            catch (Exception)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError,
+                    "Ocorreu um problema ao tratar a sua solicitação!");
+            }
+        }
     }
 }

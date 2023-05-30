@@ -49,12 +49,40 @@ namespace MalaDireta.Controllers
         }
 
         [HttpPost]
-        public ActionResult Post(Cliente cliente) { }
+        public ActionResult Post(Cliente cliente) 
+        {
+            try
+            {
+
+            }
+            catch (Exception)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError,
+                    "Ocorreu um problema ao tratar a sua solicitação!");
+            }
+        }
 
         [HttpPut("{id:int}")]
         public ActionResult Put(Cliente cliente) {  return Ok(cliente); }
 
         [HttpDelete("{id:int}")]
-        public ActionResult Delete(int id) { }
+        public ActionResult Delete(int id) 
+        {
+            try
+            {
+                var cliente = _context.Clientes.FirstOrDefault(c => c.Id == id);
+                if (cliente == null) { return NotFound($"Não encontrado o cliente com id={id}!");  }
+
+                _context.Clientes.Remove(cliente);
+                _context.SaveChanges();
+
+                return Ok(cliente);
+            }
+            catch (Exception)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError,
+                    "Ocorreu um problema ao tratar a sua solicitação!");
+            }
+        }
     }
 }
