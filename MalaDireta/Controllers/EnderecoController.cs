@@ -1,6 +1,7 @@
 ﻿using MalaDireta.Context;
 using MalaDireta.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace MalaDireta.Controllers
 {
@@ -69,7 +70,24 @@ namespace MalaDireta.Controllers
         }
 
         [HttpPut("{id:int}")]
-        public ActionResult Put(Endereco endereco) {  return View(endereco); }
+        public ActionResult Put(int id, Endereco endereco) 
+        {
+            try
+            {
+                if (id != endereco.Id) { return BadRequest($"Endereço não encontrado com este id={id}"); }
+
+                _context.Entry(endereco).State = EntityState.Modified;
+                _context.SaveChanges();
+
+                return Ok(endereco);
+            }
+            catch (Exception)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError,
+                    "Ocorreu um problema ao tratar a sua solicitação!");
+            }
+
+        }
 
         [HttpDelete("{id:int}")]
         public ActionResult Delete(int id) 

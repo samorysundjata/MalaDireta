@@ -53,7 +53,13 @@ namespace MalaDireta.Controllers
         {
             try
             {
+                if (cliente is null) { return BadRequest("Cliente não enviado.");  }
 
+                _context.Add(cliente);
+                _context.SaveChanges();
+
+                return new CreatedAtRouteResult("ObterCliente", 
+                    new { id = cliente.Id }, cliente);
             }
             catch (Exception)
             {
@@ -63,7 +69,24 @@ namespace MalaDireta.Controllers
         }
 
         [HttpPut("{id:int}")]
-        public ActionResult Put(Cliente cliente) {  return Ok(cliente); }
+        public ActionResult Put(int id, Cliente cliente) 
+        {
+            try
+            {
+                if (id != cliente.Id) { return BadRequest($"Cliente não encotrado com este id={id}");  }
+
+                _context.Entry(cliente).State = EntityState.Modified;
+                _context.SaveChanges();
+
+                return Ok(cliente);
+            }
+            catch (Exception)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError,
+                    "Ocorreu um problema ao tratar a sua solicitação!");
+            }
+            
+        }
 
         [HttpDelete("{id:int}")]
         public ActionResult Delete(int id) 
