@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace MalaDireta.Models
 {
-    [Table("Endereco")]
+    [Table("Enderecoes")]
     public class Endereco
     {
         [Key] //Mudar no futuro para ProdutoId

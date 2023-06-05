@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace MalaDireta.Models
 {
-    [Table("Cliente")]
+    [Table("Clientes")]
     public class Cliente
     {
         [Key] //Mudar no futuro para ClienteId
