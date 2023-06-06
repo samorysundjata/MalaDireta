@@ -38,7 +38,7 @@ namespace MalaDireta.Controllers
         {
             try
             {
-                var endereco = _context.Enderecoes.FirstOrDefault(e => e.Id == id);
+                var endereco = _context.Enderecoes.FirstOrDefault(e => e.EnderecoId == id);
                 if (endereco is null) { return NotFound("Endereço não encontrado"); }
                 return endereco;
             }
@@ -60,7 +60,7 @@ namespace MalaDireta.Controllers
                 _context.SaveChanges();
 
                 return new CreatedAtRouteResult("ObterEndereco", 
-                    new { id = endereco.Id }, endereco);
+                    new { id = endereco.EnderecoId }, endereco);
             }
             catch (Exception)
             {
@@ -74,7 +74,7 @@ namespace MalaDireta.Controllers
         {
             try
             {
-                if (id != endereco.Id) { return BadRequest($"Endereço não encontrado com este id={id}"); }
+                if (id != endereco.EnderecoId) { return BadRequest($"Endereço não encontrado com este id={id}"); }
 
                 _context.Entry(endereco).State = EntityState.Modified;
                 _context.SaveChanges();
@@ -94,7 +94,7 @@ namespace MalaDireta.Controllers
         {
             try
             {
-                var endereco = _context.Enderecoes.FirstOrDefault(e => e.Id == id);
+                var endereco = _context.Enderecoes.FirstOrDefault(e => e.EnderecoId == id);
                 if(endereco is null) { return NotFound($"Endereco com id={id} não encontrado!"); }
 
                 _context.Enderecoes.Remove(endereco);

@@ -6,10 +6,10 @@ namespace MalaDireta.Models
     [Table("Enderecoes")]
     public class Endereco
     {
-        [Key] //Mudar no futuro para ProdutoId
-        public int Id { get; set; }
+        [Key]
+        public int EnderecoId { get; set; }
 
-        [Required]
+        [Required] //Será que tem que decompor para número e complemento?
         public string Logradouro { get; set; }
 
         [Required]
@@ -18,7 +18,7 @@ namespace MalaDireta.Models
         [Required]
         public string Estado { get; set; }
 
-        [Required]
-        public string CEP { get; set; }
+        [Required] //Modificado para int aqui
+        public int CEP { get; set; }
     }
 }
