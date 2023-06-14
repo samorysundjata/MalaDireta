@@ -10,10 +10,12 @@ namespace MalaDireta.Controllers
     public class EnderecoController : Controller
     {
         private readonly AppDbContext _context;
+        //private readonly ILogger _logger;
 
-        public EnderecoController(AppDbContext context)
+        public EnderecoController(AppDbContext context/*, ILogger logger*/)
         {
             _context = context;
+            //_logger = logger;
         }
 
         [HttpGet("enderecos")]
