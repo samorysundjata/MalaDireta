@@ -10,12 +10,10 @@ namespace MalaDireta.Controllers
     public class ClienteController : Controller
     {
         private readonly AppDbContext _context;
-        //private readonly ILogger _logger;
 
-        public ClienteController(AppDbContext context/*, ILogger logger*/)
+        public ClienteController(AppDbContext context)
         {
             _context = context;
-            //_logger = logger;
         }
 
         [HttpGet("clientes")]
@@ -23,8 +21,6 @@ namespace MalaDireta.Controllers
         {
             try
             {
-                //_logger.LogInformation("Listagem geral de clientes",
-                //    DateTime.UtcNow.ToLongTimeString());
 
                 var clientes = _context.Clientes.AsNoTracking().ToList();
                 if (!clientes.Any()) { return NotFound("Não há clientes!"); }
@@ -42,8 +38,6 @@ namespace MalaDireta.Controllers
         {
             try
             {
-                //_logger.LogInformation($"Recuperando o cliente pelo id {id}",
-                //   DateTime.UtcNow.ToLongTimeString());
 
                 var cliente = _context.Clientes.FirstOrDefault(c => c.Id == id);
                 if (cliente == null) { return NotFound("Não encontrado este cliente");  }
@@ -61,8 +55,6 @@ namespace MalaDireta.Controllers
         {
             try
             {
-                //_logger.LogInformation("Inserção de cliente",
-                //   DateTime.UtcNow.ToLongTimeString());
 
                 if (cliente is null) { return BadRequest("Cliente não enviado.");  }
 
