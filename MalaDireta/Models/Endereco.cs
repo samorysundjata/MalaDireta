@@ -9,16 +9,16 @@ namespace MalaDireta.Models
         [Key]
         public int EnderecoId { get; set; }
 
-        [Required] //Será que tem que decompor para número e complemento?
+        [Required] //Será que tem que decompor para endereço, número e complemento?
         public string Logradouro { get; set; }
 
         [Required]
         public string Cidade { get; set; }
 
-        [Required]
+        [Required] //Passar para um enum no futuro.
         public string Estado { get; set; }
 
-        [Required] //Modificado para int aqui
+        [Required]
         public int CEP { get; set; }
     }
 }

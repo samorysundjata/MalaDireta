@@ -25,8 +25,8 @@ namespace MalaDireta.Models
             this.email = _email;
         }
 
-        [Key] //Mudar no futuro para ClienteId
-        public int Id { get; set; }
+        [Key] 
+        public int ClienteId { get; set; }
 
         [Required]
         public string Nome { get; set; }

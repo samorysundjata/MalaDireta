@@ -39,7 +39,7 @@ namespace MalaDireta.Controllers
             try
             {
 
-                var cliente = _context.Clientes.FirstOrDefault(c => c.Id == id);
+                var cliente = _context.Clientes.FirstOrDefault(c => c.ClienteId == id);
                 if (cliente == null) { return NotFound("Não encontrado este cliente");  }
                 return cliente;
             }
@@ -51,7 +51,7 @@ namespace MalaDireta.Controllers
         }
 
         [HttpPost]
-        public ActionResult Post(Cliente cliente) 
+        public IActionResult Post(Cliente cliente)
         {
             try
             {
@@ -62,7 +62,7 @@ namespace MalaDireta.Controllers
                 _context.SaveChanges();
 
                 return new CreatedAtRouteResult("ObterCliente", 
-                    new { id = cliente.Id }, cliente);
+                    new { id = cliente.ClienteId }, cliente);
             }
             catch (Exception)
             {
@@ -72,11 +72,11 @@ namespace MalaDireta.Controllers
         }
 
         [HttpPut("{id:int}")]
-        public ActionResult Put(int id, Cliente cliente) 
+        public IActionResult Put(int id, Cliente cliente)
         {
             try
             {
-                if (id != cliente.Id) { return BadRequest($"Cliente não encotrado com este id={id}");  }
+                if (id != cliente.ClienteId) { return BadRequest($"Cliente não encotrado com este id={id}");  }
 
                 _context.Entry(cliente).State = EntityState.Modified;
                 _context.SaveChanges();
@@ -96,8 +96,8 @@ namespace MalaDireta.Controllers
         {
             try
             {
-                var cliente = _context.Clientes.FirstOrDefault(c => c.Id == id);
-                if (cliente == null) { return NotFound($"Não encontrado o cliente com id={id}!");  }
+                var cliente = _context.Clientes.FirstOrDefault(c => c.ClienteId == id);
+                if (cliente == null) { return NotFound($"Não foi encontrado o cliente com id={id}!");  }
 
                 _context.Clientes.Remove(cliente);
                 _context.SaveChanges();
