@@ -6,6 +6,11 @@ namespace MalaDireta.Models
     [Table("Enderecoes")]
     public class Endereco
     {
+        public Endereco()
+        {
+            
+        }
+
         [Key]
         public int EnderecoId { get; set; }
 
