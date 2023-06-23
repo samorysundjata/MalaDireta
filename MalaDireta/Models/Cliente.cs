@@ -8,7 +8,7 @@ namespace MalaDireta.Models
     {
         //Criar validações aqui.
 
-        private int id;
+        //private int id;
         private string nome;
         private string telefone;
         private string email;
@@ -17,16 +17,16 @@ namespace MalaDireta.Models
         {
         }
 
-        public Cliente(int _id, string _nome, string _telefone, string _email)
+        public Cliente(/*int _id,*/ string _nome, string _telefone, string _email)
         {
-            this.id = _id;
+            //this.id = _id;
             this.nome = _nome;
             this.telefone = _telefone;
             this.email = _email;
         }
 
-        [Key] //Mudar no futuro para ClienteId
-        public int Id { get; set; }
+        [Key] 
+        public int ClienteId { get; set; }
 
         [Required]
         public string Nome { get; set; }

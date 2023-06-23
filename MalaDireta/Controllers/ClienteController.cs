@@ -10,12 +10,14 @@ namespace MalaDireta.Controllers
     public class ClienteController : Controller
     {
         private readonly AppDbContext _context;
-        //private readonly ILogger _logger;
 
-        public ClienteController(AppDbContext context/*, ILogger logger*/)
+        public ClienteController(AppDbContext context)
         {
             _context = context;
-            //_logger = logger;
+        }
+
+        public ClienteController()
+        {
         }
 
         [HttpGet("clientes")]
@@ -23,8 +25,6 @@ namespace MalaDireta.Controllers
         {
             try
             {
-                //_logger.LogInformation("Listagem geral de clientes",
-                //    DateTime.UtcNow.ToLongTimeString());
 
                 var clientes = _context.Clientes.AsNoTracking().ToList();
                 if (!clientes.Any()) { return NotFound("Não há clientes!"); }
@@ -42,10 +42,8 @@ namespace MalaDireta.Controllers
         {
             try
             {
-                //_logger.LogInformation($"Recuperando o cliente pelo id {id}",
-                //   DateTime.UtcNow.ToLongTimeString());
 
-                var cliente = _context.Clientes.FirstOrDefault(c => c.Id == id);
+                var cliente = _context.Clientes.FirstOrDefault(c => c.ClienteId == id);
                 if (cliente == null) { return NotFound("Não encontrado este cliente");  }
                 return cliente;
             }
@@ -57,12 +55,10 @@ namespace MalaDireta.Controllers
         }
 
         [HttpPost]
-        public ActionResult Post(Cliente cliente) 
+        public IActionResult Post(Cliente cliente)
         {
             try
             {
-                //_logger.LogInformation("Inserção de cliente",
-                //   DateTime.UtcNow.ToLongTimeString());
 
                 if (cliente is null) { return BadRequest("Cliente não enviado.");  }
 
@@ -70,7 +66,7 @@ namespace MalaDireta.Controllers
                 _context.SaveChanges();
 
                 return new CreatedAtRouteResult("ObterCliente", 
-                    new { id = cliente.Id }, cliente);
+                    new { id = cliente.ClienteId }, cliente);
             }
             catch (Exception)
             {
@@ -80,11 +76,11 @@ namespace MalaDireta.Controllers
         }
 
         [HttpPut("{id:int}")]
-        public ActionResult Put(int id, Cliente cliente) 
+        public IActionResult Put(int id, Cliente cliente)
         {
             try
             {
-                if (id != cliente.Id) { return BadRequest($"Cliente não encotrado com este id={id}");  }
+                if (id != cliente.ClienteId) { return BadRequest($"Cliente não encotrado com este id={id}");  }
 
                 _context.Entry(cliente).State = EntityState.Modified;
                 _context.SaveChanges();
@@ -104,8 +100,8 @@ namespace MalaDireta.Controllers
         {
             try
             {
-                var cliente = _context.Clientes.FirstOrDefault(c => c.Id == id);
-                if (cliente == null) { return NotFound($"Não encontrado o cliente com id={id}!");  }
+                var cliente = _context.Clientes.FirstOrDefault(c => c.ClienteId == id);
+                if (cliente == null) { return NotFound($"Não foi encontrado o cliente com id={id}!");  }
 
                 _context.Clientes.Remove(cliente);
                 _context.SaveChanges();
