@@ -19,5 +19,23 @@ namespace MalaDiretaTests
             //Assert
             Assert.NotNull(endereco);
         }
+
+        [Fact]
+        public void Endereco_Testar_Dois()
+        {
+            //Arrange
+            var endereco = new Endereco(
+                    "x",          
+                    "z",
+                    "RS",
+                    123456
+                );
+
+            //Act
+            var result = endereco;
+
+            //Assert
+            Assert.NotNull( result );
+        }
     }
 }

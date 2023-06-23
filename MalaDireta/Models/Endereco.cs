@@ -6,9 +6,22 @@ namespace MalaDireta.Models
     [Table("Enderecoes")]
     public class Endereco
     {
+        private string _logradouro;
+        private string _cidade;
+        private string _estado;
+        private int _cep;
+
         public Endereco()
         {
             
+        }
+
+        public Endereco(string logradouro, string cidade, string estado ,int cep)
+        {
+            _logradouro = logradouro;
+            _cidade = cidade;
+            _estado = estado;
+            _cep = cep;
         }
 
         [Key]

@@ -16,6 +16,10 @@ namespace MalaDireta.Controllers
             _context = context;
         }
 
+        public ClienteController()
+        {
+        }
+
         [HttpGet("clientes")]
         public ActionResult<IEnumerable<Cliente>> GetClientes() 
         {
