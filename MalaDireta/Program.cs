@@ -29,7 +29,7 @@ app.UseExceptionHandling(environment)
     .UseAppCors();
 
 app.UseHttpsRedirection();
-
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();
