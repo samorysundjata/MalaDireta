@@ -20,7 +20,7 @@ namespace MalaDireta.Extensions
             services.AddEndpointsApiExplorer();
             services.AddSwaggerGen(c =>
             {
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = "apiagenda", Version = "v1" });
+                c.SwaggerDoc("v1", new OpenApiInfo { Title = "Mala Direta", Version = "v1" });
 
                 c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme()
                 {
@@ -29,7 +29,7 @@ namespace MalaDireta.Extensions
                     Scheme = "Bearer",
                     BearerFormat = "JWT",
                     In = ParameterLocation.Header,
-                    Description = "JWT Authorization header using the Bearer scheme. Enter 'Bearer'[space] and then your token in the text input below. Example: \"Bearer 12345abcdef\"",
+                    Description = "Cabeçalho de autorização JWT usando o esquema Bearer. Digite 'Bearer' [espaço] e, em seguida, seu token na entrada de texto abaixo. Exemplo: \"Bearer 12345abcdef\"",
                 });
                 c.AddSecurityRequirement(new OpenApiSecurityRequirement
                 {
