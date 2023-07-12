@@ -8,21 +8,23 @@ namespace MalaDireta.Models
     {
         //Criar validações aqui.
 
-        //private int id;
+        private int id;
         private string nome;
         private string telefone;
         private string email;
+        private Endereco endereco;
 
         public Cliente()
         {
         }
 
-        public Cliente(/*int _id,*/ string _nome, string _telefone, string _email)
+        public Cliente(int _id, string _nome, string _telefone, string _email, Endereco _endereco)
         {
-            //this.id = _id;
+            this.id = _id;
             this.nome = _nome;
             this.telefone = _telefone;
             this.email = _email;
+            this.endereco = _endereco;
         }
 
         [Key] 
@@ -34,5 +36,8 @@ namespace MalaDireta.Models
         public string? Telefone { get; set; }
 
         public string? Email { get; set; }
+
+        [Required]
+        public Endereco Endereco { get; set; }
     }
 }

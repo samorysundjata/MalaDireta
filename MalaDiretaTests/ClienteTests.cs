@@ -22,6 +22,13 @@ namespace MalaDiretaTests
             cliente.Nome = "Fulano de Tal";
             cliente.Email = "fulano@gmail.com";
             cliente.Telefone = "012346789";
+            cliente.Endereco = new Endereco(
+                    id: 1,
+                    logradouro: "Texto",
+                    cidade: "Texto",
+                    estado: "DD",
+                    cep: 123456
+                );
 
 
             //Assert
@@ -34,10 +41,17 @@ namespace MalaDiretaTests
         {
             //Arrange
             var cliente = new Cliente(
-                        //100,
+                        100,
                         "Fulano de Tal",
                         "2199725457",
-                        "fulano@gmail.com"
+                        "fulano@gmail.com",
+                        new Endereco(
+                            100,
+                            "Texto",
+                            "Texto",
+                            "Texto",
+                            12346
+                            )
                 );
 
             //Act
