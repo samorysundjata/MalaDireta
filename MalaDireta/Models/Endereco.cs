@@ -6,6 +6,7 @@ namespace MalaDireta.Models
     [Table("Enderecoes")]
     public class Endereco
     {
+        private int _id;
         private string _logradouro;
         private string _cidade;
         private string _estado;
@@ -16,8 +17,9 @@ namespace MalaDireta.Models
             
         }
 
-        public Endereco(string logradouro, string cidade, string estado ,int cep)
+        public Endereco(int id, string logradouro, string cidade, string estado ,int cep)
         {
+            _id = id;
             _logradouro = logradouro;
             _cidade = cidade;
             _estado = estado;
