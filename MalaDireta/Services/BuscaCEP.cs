@@ -6,7 +6,7 @@ namespace MalaDireta.Services
     {
         public BuscaCEP()
         {
-                
+
         }
 
         public void ConsultaCEP(string cep)
