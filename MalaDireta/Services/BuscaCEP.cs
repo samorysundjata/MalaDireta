@@ -1,4 +1,5 @@
-﻿using WSCorreios;
+﻿using MalaDireta.Models;
+using WSCorreios;
 
 namespace MalaDireta.Services
 {
@@ -9,14 +10,21 @@ namespace MalaDireta.Services
 
         }
 
-        public void ConsultaCEP(string cep)
+        public async Task ConsultaCEP(string cep)
         {
             using (var ws = new AtendeClienteClient())
             {
                 try
                 {
-                    var endereco = ws.consultaCEPAsync(cep);
-                   
+                    var wendereco = (await ws.consultaCEPAsync("24710480")).@return;
+
+
+                    Endereco endereco = new Endereco();
+
+                    endereco.Logradouro = wendereco.end;                    
+
+
+
                 }
                 catch (System.Exception)
                 {
