@@ -32,7 +32,7 @@ namespace MalaDireta.Extensions
             }).Produces(StatusCodes.Status400BadRequest)
                 .Produces(StatusCodes.Status200OK)
                 .WithName("Login")
-                .WithTags("Auteticacao");
+                .WithTags("Autenticação");
         }
     }
 }
