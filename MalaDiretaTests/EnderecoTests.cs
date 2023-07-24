@@ -14,7 +14,7 @@ namespace MalaDiretaTests
             endereco.Logradouro = "x";
             endereco.Cidade = "y";
             endereco.Estado = "x";
-            endereco.CEP = 123465;
+            endereco.CEP = "123465";
 
             //Assert
             Assert.NotNull(endereco);

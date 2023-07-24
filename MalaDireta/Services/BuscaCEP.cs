@@ -16,12 +16,14 @@ namespace MalaDireta.Services
             {
                 try
                 {
-                    var wendereco = (await ws.consultaCEPAsync("24710480")).@return;
+                    var wendereco = (await ws.consultaCEPAsync(cep.Trim())).@return;
 
 
                     Endereco endereco = new Endereco();
 
-                    endereco.Logradouro = wendereco.end;                    
+                    endereco.Logradouro = wendereco.end;  
+                    endereco.Cidade = wendereco.cidade;
+                    endereco.CEP = Convert.ToInt32(cep);
 
 
 

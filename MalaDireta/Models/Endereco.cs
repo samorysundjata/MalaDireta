@@ -29,7 +29,7 @@ namespace MalaDireta.Models
         [Key]
         public int EnderecoId { get; set; }
 
-        [Required] //Será que tem que decompor para endereço, número e complemento?
+        [Required] //Decompor para endereço, número e complemento.
         public string Logradouro { get; set; }
 
         [Required]
@@ -39,6 +39,8 @@ namespace MalaDireta.Models
         public string Estado { get; set; }
 
         [Required]
-        public int CEP { get; set; }
+        public string CEP { get; set; }
+
+        //Colocar validações aqui.
     }
 }
