@@ -21,7 +21,7 @@ namespace MalaDireta.Services
 
                     Endereco endereco = new Endereco();
 
-                    endereco.Logradouro = wendereco.end;  
+                    endereco.Logradouro = wendereco.end;
                     endereco.Cidade = wendereco.cidade;
                     endereco.CEP = Convert.ToInt32(cep);
 

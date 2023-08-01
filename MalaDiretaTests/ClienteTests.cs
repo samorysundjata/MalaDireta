@@ -1,9 +1,7 @@
 ﻿using MalaDireta.Context;
 using MalaDireta.Controllers;
 using MalaDireta.Models;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Routing;
 using Moq;
 
 namespace MalaDiretaTests
@@ -13,7 +11,7 @@ namespace MalaDiretaTests
         private readonly AppDbContext _context;
 
         [Fact]
-        public void Cliente_Testar_Um() 
+        public void Cliente_Testar_Um()
         {
             //Arrange
             var cliente = new Cliente();
@@ -32,7 +30,7 @@ namespace MalaDiretaTests
 
 
             //Assert
-            Assert.NotNull(cliente);           
+            Assert.NotNull(cliente);
 
         }
 
@@ -85,6 +83,6 @@ namespace MalaDiretaTests
             Assert.Equal("ObterCliente", createdAtRouteResult.RouteName);
             Assert.Equal(cliente.ClienteId, createdAtRouteResult.RouteValues["id"]);
             Assert.Equal(cliente, createdAtRouteResult.Value);
-        }        
+        }
     }
 }

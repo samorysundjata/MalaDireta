@@ -16,12 +16,8 @@ namespace MalaDireta.Controllers
             _context = context;
         }
 
-        public ClienteController()
-        {
-        }
-
         [HttpGet("clientes")]
-        public ActionResult<IEnumerable<Cliente>> GetClientes() 
+        public ActionResult<IEnumerable<Cliente>> GetClientes()
         {
             try
             {
@@ -37,19 +33,18 @@ namespace MalaDireta.Controllers
             }
         }
 
-        [HttpGet("{id:int}", Name ="ObterCliente")]
-        public ActionResult<Cliente> GetCliente(int id) 
+        [HttpGet("{id:int}", Name = "ObterCliente")]
+        public ActionResult<Cliente> GetCliente(int id)
         {
             try
             {
-
                 var cliente = _context.Clientes.FirstOrDefault(c => c.ClienteId == id);
-                if (cliente == null) { return NotFound("Não encontrado este cliente");  }
+                if (cliente == null) { return NotFound("Não encontrado este cliente"); }
                 return cliente;
             }
             catch (Exception)
             {
-                return StatusCode(StatusCodes.Status500InternalServerError, 
+                return StatusCode(StatusCodes.Status500InternalServerError,
                     "Ocorreu um problema ao tratar a sua solicitação");
             }
         }
@@ -59,13 +54,12 @@ namespace MalaDireta.Controllers
         {
             try
             {
-
-                if (cliente is null) { return BadRequest("Cliente não enviado.");  }
+                if (cliente is null) { return BadRequest("Cliente não enviado."); }
 
                 _context.Add(cliente);
                 _context.SaveChanges();
 
-                return new CreatedAtRouteResult("ObterCliente", 
+                return new CreatedAtRouteResult("ObterCliente",
                     new { id = cliente.ClienteId }, cliente);
             }
             catch (Exception)
@@ -80,7 +74,7 @@ namespace MalaDireta.Controllers
         {
             try
             {
-                if (id != cliente.ClienteId) { return BadRequest($"Cliente não encotrado com este id={id}");  }
+                if (id != cliente.ClienteId) { return BadRequest($"Cliente não encotrado com este id={id}"); }
 
                 _context.Entry(cliente).State = EntityState.Modified;
                 _context.SaveChanges();
@@ -92,16 +86,16 @@ namespace MalaDireta.Controllers
                 return StatusCode(StatusCodes.Status500InternalServerError,
                     "Ocorreu um problema ao tratar a sua solicitação!");
             }
-            
+
         }
 
         [HttpDelete("{id:int}")]
-        public ActionResult Delete(int id) 
+        public ActionResult Delete(int id)
         {
             try
             {
                 var cliente = _context.Clientes.FirstOrDefault(c => c.ClienteId == id);
-                if (cliente == null) { return NotFound($"Não foi encontrado o cliente com id={id}!");  }
+                if (cliente == null) { return NotFound($"Não foi encontrado o cliente com id={id}!"); }
 
                 _context.Clientes.Remove(cliente);
                 _context.SaveChanges();

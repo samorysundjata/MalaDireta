@@ -6,18 +6,18 @@ namespace MalaDireta.Models
     [Table("Enderecoes")]
     public class Endereco
     {
-        private int _id;
-        private string _logradouro;
-        private string _cidade;
-        private string _estado;
-        private int _cep;
+        private readonly int _id;
+        private readonly string _logradouro;
+        private readonly string _cidade;
+        private readonly string _estado;
+        private readonly int _cep;
 
         public Endereco()
         {
-            
+
         }
 
-        public Endereco(int id, string logradouro, string cidade, string estado ,int cep)
+        public Endereco(int id, string logradouro, string cidade, string estado, int cep)
         {
             _id = id;
             _logradouro = logradouro;
@@ -35,11 +35,11 @@ namespace MalaDireta.Models
         [Required]
         public string Cidade { get; set; }
 
-        [Required] //Passar para um enum no futuro.
+        [Required] //Passar para um enum no futuro?
         public string Estado { get; set; }
 
         [Required]
-        public string CEP { get; set; }
+        public int CEP { get; set; }
 
         //Colocar validações aqui.
     }

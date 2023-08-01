@@ -1,5 +1,4 @@
-﻿using MalaDireta.Context;
-using MalaDireta.Services;
+﻿using MalaDireta.Services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
