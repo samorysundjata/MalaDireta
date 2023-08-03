@@ -4,7 +4,7 @@
 
 namespace MalaDireta.Migrations
 {
-    public partial class InitialMigrations : Migration
+    public partial class MigracaoInicial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
