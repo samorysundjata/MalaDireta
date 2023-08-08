@@ -25,13 +25,10 @@ namespace MalaDireta.Services
                     endereco.Cidade = wendereco.cidade;
                     endereco.CEP = Convert.ToInt32(cep);
 
-
-
                 }
-                catch (System.Exception)
+                catch (System.Exception ex)
                 {
-
-                    throw;
+                    throw ex;
                 }
             }
         }
