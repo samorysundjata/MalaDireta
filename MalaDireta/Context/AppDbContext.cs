@@ -9,7 +9,7 @@ namespace MalaDireta.Context
 
         public DbSet<Endereco> Enderecoes { get; set; }
 
-        protected override void OnConfiguring(DbContextOptionsBuilder options)
-            => options.UseSqlite("DataSource=maladireta.db;Cache=Shared");
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+            => optionsBuilder.UseSqlite("DataSource=maladireta.db;Cache=Shared");
     }
 }

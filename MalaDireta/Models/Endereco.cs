@@ -41,6 +41,8 @@ namespace MalaDireta.Models
         [Required]
         public int CEP { get; set; }
 
+        public ICollection<Cliente> Residentes { get; set;}
+
         //Colocar validações aqui.
     }
 }

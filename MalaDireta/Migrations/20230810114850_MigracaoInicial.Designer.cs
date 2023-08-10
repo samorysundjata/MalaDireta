@@ -10,13 +10,28 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace MalaDireta.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20230803111430_MigracaoInicial")]
+    [Migration("20230810114850_MigracaoInicial")]
     partial class MigracaoInicial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "6.0.7");
+
+            modelBuilder.Entity("ClienteEndereco", b =>
+                {
+                    b.Property<int>("LocaisEnderecoId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("ResidentesClienteId")
+                        .HasColumnType("INTEGER");
+
+                    b.HasKey("LocaisEnderecoId", "ResidentesClienteId");
+
+                    b.HasIndex("ResidentesClienteId");
+
+                    b.ToTable("ClienteEndereco");
+                });
 
             modelBuilder.Entity("MalaDireta.Models.Cliente", b =>
                 {
@@ -27,9 +42,6 @@ namespace MalaDireta.Migrations
                     b.Property<string>("Email")
                         .HasColumnType("TEXT");
 
-                    b.Property<int>("EnderecoId")
-                        .HasColumnType("INTEGER");
-
                     b.Property<string>("Nome")
                         .IsRequired()
                         .HasColumnType("TEXT");
@@ -38,8 +50,6 @@ namespace MalaDireta.Migrations
                         .HasColumnType("TEXT");
 
                     b.HasKey("ClienteId");
-
-                    b.HasIndex("EnderecoId");
 
                     b.ToTable("Clientes");
                 });
@@ -70,15 +80,19 @@ namespace MalaDireta.Migrations
                     b.ToTable("Enderecoes");
                 });
 
-            modelBuilder.Entity("MalaDireta.Models.Cliente", b =>
+            modelBuilder.Entity("ClienteEndereco", b =>
                 {
-                    b.HasOne("MalaDireta.Models.Endereco", "Endereco")
+                    b.HasOne("MalaDireta.Models.Endereco", null)
                         .WithMany()
-                        .HasForeignKey("EnderecoId")
+                        .HasForeignKey("LocaisEnderecoId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Endereco");
+                    b.HasOne("MalaDireta.Models.Cliente", null)
+                        .WithMany()
+                        .HasForeignKey("ResidentesClienteId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 #pragma warning restore 612, 618
         }

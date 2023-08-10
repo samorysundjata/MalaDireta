@@ -12,19 +12,19 @@ namespace MalaDireta.Models
         private readonly string nome;
         private string telefone;
         private string email;
-        private Endereco endereco;
+        //private Endereco endereco;
 
         public Cliente()
         {
         }
 
-        public Cliente(int _id, string _nome, string _telefone, string _email, Endereco _endereco)
+        public Cliente(int _id, string _nome, string _telefone, string _email/*, Endereco _endereco*/)
         {
             this.id = _id;
             this.nome = _nome;
             this.telefone = _telefone;
             this.email = _email;
-            this.endereco = _endereco;
+            //this.endereco = _endereco;
         }
 
         [Key]
@@ -37,7 +37,7 @@ namespace MalaDireta.Models
 
         public string? Email { get; set; }
 
-        [Required]
-        public Endereco Endereco { get; set; }
+        //[Required]
+        public ICollection<Endereco> Locais { get; set; }
     }
 }
