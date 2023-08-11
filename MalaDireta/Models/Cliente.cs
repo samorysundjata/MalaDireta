@@ -38,6 +38,6 @@ namespace MalaDireta.Models
         public string? Email { get; set; }
 
         //[Required]
-        public ICollection<Endereco> Locais { get; set; }
+        //public ICollection<Endereco> Locais { get; set; }
     }
 }
