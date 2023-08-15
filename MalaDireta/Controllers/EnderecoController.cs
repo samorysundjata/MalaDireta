@@ -109,7 +109,34 @@ namespace MalaDireta.Controllers
             }
         }
 
-        //Colocar o BuscaCEP aqui.
-        // Verbo para buscaCEP
+        [HttpGet("buscacep")]
+        public ActionResult<String> GetCep(string cep)
+        {
+            try
+            {
+                return cep;
+            }
+            catch (Exception)
+            {
+
+                return StatusCode(StatusCodes.Status500InternalServerError,
+                    "Ocorreu um problema ao tratar a sua solicitação!");
+            }
+        }
+
+        [HttpGet("buscaendereco")]
+        public ActionResult<String> GetEnderecoCep(string endereco)
+        {
+            try
+            {
+                return endereco;
+            }
+            catch (Exception)
+            {
+
+                return StatusCode(StatusCodes.Status500InternalServerError,
+                    "Ocorreu um problema ao tratar a sua solicitação!");
+            }
+        }
     }
 }

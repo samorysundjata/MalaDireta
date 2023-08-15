@@ -1,9 +1,9 @@
 ﻿namespace MalaDireta.Services
 {
-    public interface IBuscaCEP
+    public interface IBuscaCep
     {
-        void BuscaUm();
+        public Task ConsultaCEP(string cep);
 
-        void BuscaDois();
+        public string ConsultaEndereco(string endereco);
     }
 }

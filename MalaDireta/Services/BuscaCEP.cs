@@ -1,35 +1,43 @@
 ﻿using MalaDireta.Models;
 using WSCorreios;
+using Exception = System.Exception;
 
 namespace MalaDireta.Services
 {
-    public class BuscaCEP
+    public class BuscaCEP : IBuscaCep
     {
         public BuscaCEP()
         {
 
         }
 
-        public async Task ConsultaCEP(string cep)
+        public Task ConsultaCEP(string cep)
         {
-            using (var ws = new AtendeClienteClient())
+            try
             {
-                try
-                {
-                    var wendereco = (await ws.consultaCEPAsync(cep.Trim())).@return;
 
+                return Task.Run(() => { string valor = cep; });
+                
+            }
+            catch (Exception ex)
+            {
 
-                    Endereco endereco = new Endereco();
+                throw ex;
+            }            
+        }
 
-                    endereco.Logradouro = wendereco.end;
-                    endereco.Cidade = wendereco.cidade;
-                    endereco.CEP = Convert.ToInt32(cep);
+        public string ConsultaEndereco(string endereco)
+        {
+            try
+            {
+                var cep = "123456789";
 
-                }
-                catch (System.Exception ex)
-                {
-                    throw ex;
-                }
+                return cep;
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
             }
         }
     }
