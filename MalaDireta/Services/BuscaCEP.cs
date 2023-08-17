@@ -1,5 +1,4 @@
-﻿using MalaDireta.Models;
-using WSCorreios;
+﻿using System.Runtime.ConstrainedExecution;
 using Exception = System.Exception;
 
 namespace MalaDireta.Services
@@ -15,28 +14,22 @@ namespace MalaDireta.Services
         {
             try
             {
-
-                return Task.Run(() => { string valor = cep; });
-                
+                return Task.Run(() => { _ = cep; });
             }
             catch (Exception ex)
             {
-
                 throw ex;
-            }            
+            }
         }
 
-        public string ConsultaEndereco(string endereco)
+        public Task ConsultaEndereco(string endereco)
         {
             try
             {
-                var cep = "123456789";
-
-                return cep;
+                return Task.Run(() => { _ = endereco; });
             }
             catch (Exception ex)
             {
-
                 throw ex;
             }
         }

@@ -1,5 +1,6 @@
 ﻿using MalaDireta.Context;
 using MalaDireta.Models;
+using MalaDireta.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -10,6 +11,7 @@ namespace MalaDireta.Controllers
     public class EnderecoController : Controller
     {
         private readonly AppDbContext _context;
+        private readonly IBuscaCep _buscaCep;
 
         public EnderecoController(AppDbContext context)
         {
@@ -114,7 +116,9 @@ namespace MalaDireta.Controllers
         {
             try
             {
-                return cep;
+                _buscaCep.ConsultaCEP(cep);
+                return Ok(cep);
+
             }
             catch (Exception)
             {
@@ -129,7 +133,8 @@ namespace MalaDireta.Controllers
         {
             try
             {
-                return endereco;
+                _buscaCep.ConsultaEndereco(endereco);
+                return Ok(endereco);
             }
             catch (Exception)
             {

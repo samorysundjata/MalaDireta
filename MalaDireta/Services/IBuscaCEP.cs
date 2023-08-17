@@ -4,6 +4,6 @@
     {
         public Task ConsultaCEP(string cep);
 
-        public string ConsultaEndereco(string endereco);
+        public Task ConsultaEndereco(string endereco);
     }
 }
