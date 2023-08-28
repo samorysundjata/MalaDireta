@@ -1,17 +1,21 @@
 using MalaDireta.Context;
 using MalaDireta.Extensions;
+using MalaDireta.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.AddControllers();builder.Services.AddDbContext<AppDbContext>();
+builder.Services.AddControllers();
+builder.Services.AddDbContext<AppDbContext>();
+builder.Services.AddCors();
 builder.AddApiSwagger();
 builder.AddPersistence();
-builder.Services.AddCors();
 builder.AddAutenticationJwt();
+builder.Services.AddScoped<BuscaCEP, BuscaCEP>();
 
 var app = builder.Build();
 
 app.MapAutenticacaoEndpoints();
+
 
 var environment = app.Environment;
 app.UseExceptionHandling(environment)
@@ -25,3 +29,4 @@ app.UseAuthorization();
 app.MapControllers();
 
 app.Run();
+

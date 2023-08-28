@@ -4,7 +4,7 @@
 
 namespace MalaDireta.Migrations
 {
-    public partial class InitialMigrations : Migration
+    public partial class MigracaoInicial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -33,7 +33,7 @@ namespace MalaDireta.Migrations
                     Nome = table.Column<string>(type: "TEXT", nullable: false),
                     Telefone = table.Column<string>(type: "TEXT", nullable: true),
                     Email = table.Column<string>(type: "TEXT", nullable: true),
-                    EnderecoId = table.Column<int>(type: "INTEGER", nullable: false)
+                    EnderecoId = table.Column<int>(type: "INTEGER", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -42,8 +42,7 @@ namespace MalaDireta.Migrations
                         name: "FK_Clientes_Enderecoes_EnderecoId",
                         column: x => x.EnderecoId,
                         principalTable: "Enderecoes",
-                        principalColumn: "EnderecoId",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "EnderecoId");
                 });
 
             migrationBuilder.CreateIndex(

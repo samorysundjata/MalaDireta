@@ -14,7 +14,7 @@ namespace MalaDiretaTests
             endereco.Logradouro = "x";
             endereco.Cidade = "y";
             endereco.Estado = "x";
-            endereco.CEP = "123465";
+            endereco.CEP = 123465;
 
             //Assert
             Assert.NotNull(endereco);
@@ -25,7 +25,8 @@ namespace MalaDiretaTests
         {
             //Arrange
             var endereco = new Endereco(
-                    "x",          
+                    1,
+                    "x",
                     "z",
                     "RS",
                     123456
@@ -35,7 +36,7 @@ namespace MalaDiretaTests
             var result = endereco;
 
             //Assert
-            Assert.NotNull( result );
+            Assert.NotNull(result);
         }
     }
 }

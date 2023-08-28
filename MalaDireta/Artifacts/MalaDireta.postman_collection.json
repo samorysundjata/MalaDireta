@@ -1,0 +1,26 @@
+{
+	"info": {
+		"_postman_id": "4037f3f9-4bb4-4926-9a19-39f8cffc296b",
+		"name": "MalaDireta",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "18299061"
+	},
+	"item": [
+		{
+			"name": "New Request",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://localhost:7100",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "7100"
+				}
+			},
+			"response": []
+		}
+	]
+}

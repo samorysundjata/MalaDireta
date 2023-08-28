@@ -1,5 +1,6 @@
 ﻿using MalaDireta.Context;
 using MalaDireta.Models;
+using MalaDireta.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -10,14 +11,16 @@ namespace MalaDireta.Controllers
     public class EnderecoController : Controller
     {
         private readonly AppDbContext _context;
+        private readonly BuscaCEP  _cepBusca;
 
-        public EnderecoController(AppDbContext context)
+        public EnderecoController(AppDbContext context, BuscaCEP cepBusca)
         {
             _context = context;
+            _cepBusca = cepBusca;
         }
 
         [HttpGet("enderecos")]
-        public ActionResult<IEnumerable<Endereco>> GetEnderecos() 
+        public ActionResult<IEnumerable<Endereco>> GetEnderecos()
         {
             try
             {
@@ -33,8 +36,8 @@ namespace MalaDireta.Controllers
             }
         }
 
-        [HttpGet("{id:int}", Name ="ObterEndereco")]
-        public ActionResult<Endereco> GetEndereco(int id) 
+        [HttpGet("{id:int}", Name = "ObterEndereco")]
+        public ActionResult<Endereco> GetEndereco(int id)
         {
             try
             {
@@ -44,13 +47,13 @@ namespace MalaDireta.Controllers
             }
             catch (Exception)
             {
-                return StatusCode(StatusCodes.Status500InternalServerError, 
+                return StatusCode(StatusCodes.Status500InternalServerError,
                     "Ocorreu um problema ao tratar a sua solicitação!");
             }
         }
 
         [HttpPost]
-        public  ActionResult Post(Endereco endereco) 
+        public ActionResult Post(Endereco endereco)
         {
             try
             {
@@ -59,7 +62,7 @@ namespace MalaDireta.Controllers
                 _context.Add(endereco);
                 _context.SaveChanges();
 
-                return new CreatedAtRouteResult("ObterEndereco", 
+                return new CreatedAtRouteResult("ObterEndereco",
                     new { id = endereco.EnderecoId }, endereco);
             }
             catch (Exception)
@@ -70,7 +73,7 @@ namespace MalaDireta.Controllers
         }
 
         [HttpPut("{id:int}")]
-        public ActionResult Put(int id, Endereco endereco) 
+        public ActionResult Put(int id, Endereco endereco)
         {
             try
             {
@@ -90,12 +93,12 @@ namespace MalaDireta.Controllers
         }
 
         [HttpDelete("{id:int}")]
-        public ActionResult Delete(int id) 
+        public ActionResult Delete(int id)
         {
             try
             {
                 var endereco = _context.Enderecoes.FirstOrDefault(e => e.EnderecoId == id);
-                if(endereco is null) { return NotFound($"Endereco com id={id} não encontrado!"); }
+                if (endereco is null) { return NotFound($"Endereco com id={id} não encontrado!"); }
 
                 _context.Enderecoes.Remove(endereco);
                 _context.SaveChanges();
@@ -104,6 +107,40 @@ namespace MalaDireta.Controllers
             }
             catch (Exception)
             {
+                return StatusCode(StatusCodes.Status500InternalServerError,
+                    "Ocorreu um problema ao tratar a sua solicitação!");
+            }
+        }
+
+        [HttpGet("buscacep")]
+        public ActionResult<String> GetCep(string cep)
+        {
+            try
+            {
+                _cepBusca.ConsultaCEP(cep);
+                return Ok(cep);
+
+            }
+            catch (Exception)
+            {
+
+                return StatusCode(StatusCodes.Status500InternalServerError,
+                    "Ocorreu um problema ao tratar a sua solicitação!");
+            }
+        }
+
+        [HttpGet("buscaendereco")]
+        public ActionResult<String> GetEnderecoCep(string endereco)
+        {
+            try
+            {
+                BuscaCEP _buscaCep = new BuscaCEP();
+                _buscaCep.ConsultaEndereco(endereco);
+                return Ok(endereco);
+            }
+            catch (Exception)
+            {
+
                 return StatusCode(StatusCodes.Status500InternalServerError,
                     "Ocorreu um problema ao tratar a sua solicitação!");
             }
