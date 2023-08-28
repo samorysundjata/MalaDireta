@@ -15,7 +15,7 @@ namespace MalaDireta.Extensions
                 {
                     return Results.BadRequest("Login inválido");
                 }
-                if (userModel.UserName == "user" && userModel.Password == "pass") //Colocar no appsettings depois.
+                if (userModel.UserName == "string" && userModel.Password == "string") //Colocar no appsettings depois.
                 {
                     var tokenString = tokenService.GerarToken(app.Configuration["Jwt:Key"],
                         app.Configuration["Jwt:Issuer"],

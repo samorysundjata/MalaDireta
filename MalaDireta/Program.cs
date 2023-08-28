@@ -1,5 +1,6 @@
 using MalaDireta.Context;
 using MalaDireta.Extensions;
+using MalaDireta.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -9,10 +10,12 @@ builder.Services.AddCors();
 builder.AddApiSwagger();
 builder.AddPersistence();
 builder.AddAutenticationJwt();
+builder.Services.AddScoped<BuscaCEP, BuscaCEP>();
 
 var app = builder.Build();
 
 app.MapAutenticacaoEndpoints();
+
 
 var environment = app.Environment;
 app.UseExceptionHandling(environment)

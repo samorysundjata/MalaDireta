@@ -18,7 +18,7 @@ namespace MalaDireta.Services
             }
             catch (Exception ex)
             {
-                throw ex;
+                throw;
             }
         }
 
@@ -30,7 +30,7 @@ namespace MalaDireta.Services
             }
             catch (Exception ex)
             {
-                throw ex;
+                throw;
             }
         }
     }

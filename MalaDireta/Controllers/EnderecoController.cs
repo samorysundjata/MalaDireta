@@ -11,11 +11,12 @@ namespace MalaDireta.Controllers
     public class EnderecoController : Controller
     {
         private readonly AppDbContext _context;
-        private readonly IBuscaCep _buscaCep;
+        private readonly BuscaCEP  _cepBusca;
 
-        public EnderecoController(AppDbContext context)
+        public EnderecoController(AppDbContext context, BuscaCEP cepBusca)
         {
             _context = context;
+            _cepBusca = cepBusca;
         }
 
         [HttpGet("enderecos")]
@@ -116,7 +117,7 @@ namespace MalaDireta.Controllers
         {
             try
             {
-                _buscaCep.ConsultaCEP(cep);
+                _cepBusca.ConsultaCEP(cep);
                 return Ok(cep);
 
             }
@@ -133,6 +134,7 @@ namespace MalaDireta.Controllers
         {
             try
             {
+                BuscaCEP _buscaCep = new BuscaCEP();
                 _buscaCep.ConsultaEndereco(endereco);
                 return Ok(endereco);
             }
