@@ -18,6 +18,7 @@ namespace MalaDireta.Services
             }
             catch (Exception ex)
             {
+                Console.WriteLine(ex.ToString());
                 throw;
             }
         }
@@ -30,6 +31,7 @@ namespace MalaDireta.Services
             }
             catch (Exception ex)
             {
+                Console.WriteLine(ex.ToString());
                 throw;
             }
         }

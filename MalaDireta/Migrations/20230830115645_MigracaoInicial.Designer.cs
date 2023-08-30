@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace MalaDireta.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20230811114116_MigracaoInicial")]
+    [Migration("20230830115645_MigracaoInicial")]
     partial class MigracaoInicial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -68,19 +68,16 @@ namespace MalaDireta.Migrations
 
                     b.HasKey("EnderecoId");
 
-                    b.ToTable("Enderecoes");
+                    b.ToTable("Enderecos");
                 });
 
             modelBuilder.Entity("MalaDireta.Models.Cliente", b =>
                 {
-                    b.HasOne("MalaDireta.Models.Endereco", null)
-                        .WithMany("Residentes")
+                    b.HasOne("MalaDireta.Models.Endereco", "Endereco")
+                        .WithMany()
                         .HasForeignKey("EnderecoId");
-                });
 
-            modelBuilder.Entity("MalaDireta.Models.Endereco", b =>
-                {
-                    b.Navigation("Residentes");
+                    b.Navigation("Endereco");
                 });
 #pragma warning restore 612, 618
         }

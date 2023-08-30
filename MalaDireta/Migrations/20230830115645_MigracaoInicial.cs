@@ -9,7 +9,7 @@ namespace MalaDireta.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "Enderecoes",
+                name: "Enderecos",
                 columns: table => new
                 {
                     EnderecoId = table.Column<int>(type: "INTEGER", nullable: false)
@@ -21,7 +21,7 @@ namespace MalaDireta.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Enderecoes", x => x.EnderecoId);
+                    table.PrimaryKey("PK_Enderecos", x => x.EnderecoId);
                 });
 
             migrationBuilder.CreateTable(
@@ -39,9 +39,9 @@ namespace MalaDireta.Migrations
                 {
                     table.PrimaryKey("PK_Clientes", x => x.ClienteId);
                     table.ForeignKey(
-                        name: "FK_Clientes_Enderecoes_EnderecoId",
+                        name: "FK_Clientes_Enderecos_EnderecoId",
                         column: x => x.EnderecoId,
-                        principalTable: "Enderecoes",
+                        principalTable: "Enderecos",
                         principalColumn: "EnderecoId");
                 });
 
@@ -57,7 +57,7 @@ namespace MalaDireta.Migrations
                 name: "Clientes");
 
             migrationBuilder.DropTable(
-                name: "Enderecoes");
+                name: "Enderecos");
         }
     }
 }

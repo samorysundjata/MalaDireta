@@ -3,14 +3,14 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace MalaDireta.Models
 {
-    [Table("Enderecoes")]
+    [Table("Enderecos")]
     public class Endereco
     {
-        private readonly int _id;
-        private readonly string _logradouro;
-        private readonly string _cidade;
-        private readonly string _estado;
-        private readonly int _cep;
+        private int _id;
+        private string _logradouro;
+        private string _cidade;
+        private string _estado;
+        private int _cep;
 
         public Endereco()
         {
@@ -29,7 +29,7 @@ namespace MalaDireta.Models
         [Key]
         public int EnderecoId { get; set; }
 
-        [Required] //Decompor para endereço, número e complemento.
+        [Required] //Decompor para endereço, número e complemento?
         public string Logradouro { get; set; }
 
         [Required]
@@ -40,8 +40,6 @@ namespace MalaDireta.Models
 
         [Required]
         public int CEP { get; set; }
-
-        //public ICollection<Cliente> Residentes { get; set;}
 
         //Colocar validações aqui.
     }
