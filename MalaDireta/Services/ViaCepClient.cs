@@ -1,4 +1,6 @@
-﻿namespace MalaDireta.Services
+﻿
+
+namespace MalaDireta.Services
 {
     public class ViaCepClient : IViaCepClient
     {
@@ -8,7 +10,9 @@
 
         public ViaCepClient()
         {
-            _httpClient = new HttpClientFactory.Create();
+            //_httpClient = new HttpClientFactory.Create();
+
+            _httpClient = new HttpClient();
 
         }
 
