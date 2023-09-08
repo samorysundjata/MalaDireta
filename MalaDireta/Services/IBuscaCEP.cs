@@ -2,8 +2,8 @@
 {
     public interface IBuscaCep
     {
-        public Task ConsultaCEP(string cep);
+        //public Task ConsultaCEP(string cep);
 
-        public Task ConsultaEndereco(string endereco);
+        //public Task ConsultaEndereco(string endereco);
     }
 }

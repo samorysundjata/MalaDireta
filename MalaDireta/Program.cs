@@ -10,7 +10,6 @@ builder.Services.AddCors();
 builder.AddApiSwagger();
 builder.AddPersistence();
 builder.AddAutenticationJwt();
-//builder.Services.AddScoped<BuscaCEP, BuscaCEP>();
 builder.Services.AddScoped<IViaCepClient, ViaCepClient>();
 
 var app = builder.Build();

@@ -8,19 +8,19 @@ namespace MalaDireta.Services
         public string ZipCode { get; set; }
 
         [JsonProperty("logradouro")] 
-        public string Street { get; set; }
+        public string Logradouro { get; set; }
 
         [JsonProperty("complemento")]
-        public string Complement { get; set; }
+        public string Complemento { get; set; }
 
         [JsonProperty("bairro")]
-        public string Neighborhood { get; set; }
+        public string Bairro { get; set; }
 
         [JsonProperty("localidade")]
-        public string City { get; set; }
+        public string Cidade { get; set; }
 
         [JsonProperty("uf")]
-        public string StateInitials { get; set; }
+        public string UF { get; set; }
 
         [JsonProperty("unidade")]
         public string Unit { get; set; }

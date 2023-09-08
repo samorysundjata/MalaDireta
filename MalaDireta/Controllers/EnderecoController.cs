@@ -113,13 +113,19 @@ namespace MalaDireta.Controllers
         }
 
         [HttpGet("buscaendereco")]
-        public ActionResult<string> GetCep(string cep)
+        public ActionResult<Endereco> GetCep(string cep)
         {
             try
             {
-                //Montar um objeto de volta aqui.
-                var endereco = _cepClient.Search(cep);
-                return endereco.Street.ToString();
+                var retornoCep = _cepClient.Search(cep);
+
+                Endereco endereco = new()
+                {
+                    Logradouro = retornoCep.Logradouro.ToString() + ' ' + retornoCep.Complemento.ToString(),
+                    Cidade = retornoCep.Cidade.ToString() + ' ' + retornoCep.UF.ToString()
+                };
+
+                return endereco;
 
             }
             catch (Exception)
