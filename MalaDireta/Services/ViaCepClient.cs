@@ -1,22 +1,21 @@
 ﻿
 
+using System.Configuration;
+
 namespace MalaDireta.Services
 {
     public class ViaCepClient : IViaCepClient
     {
-        private const string _baseUrl = "https://viacep.com.br";
+        private const string _baseUrl = "https://viacep.com.br"; //Configuration.GetSection("URICep:baseURL");
 
         private readonly HttpClient _httpClient;
 
         public ViaCepClient()
         {
-            //_httpClient = new HttpClientFactory.Create();
-
             _httpClient = new HttpClient
             {
                 BaseAddress = new Uri(_baseUrl)
             };
-
         }
 
         public ViaCepClient(HttpClient httpClient)

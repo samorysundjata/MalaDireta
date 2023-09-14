@@ -24,7 +24,7 @@ namespace MalaDireta.Controllers
         {
             try
             {
-                var enderecos = _context.Clientes.ToList();
+                var enderecos = _context.Enderecoes.ToList();
                 if (!enderecos.Any()) { return NotFound("Endereços não encontrados"); }
                 //Verificar se o retorno precisa ser Json mesmo.
                 return Json(enderecos);
