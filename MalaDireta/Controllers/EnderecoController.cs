@@ -11,12 +11,12 @@ namespace MalaDireta.Controllers
     public class EnderecoController : Controller
     {
         private readonly AppDbContext _context;
-        private readonly BuscaCEP  _cepBusca;
+        private readonly IViaCepClient _cepClient;
 
-        public EnderecoController(AppDbContext context, BuscaCEP cepBusca)
+        public EnderecoController(AppDbContext context, IViaCepClient cepClient)
         {
             _context = context;
-            _cepBusca = cepBusca;
+            _cepClient = cepClient;
         }
 
         [HttpGet("enderecos")]
@@ -24,7 +24,7 @@ namespace MalaDireta.Controllers
         {
             try
             {
-                var enderecos = _context.Clientes.ToList();
+                var enderecos = _context.Enderecoes.ToList();
                 if (!enderecos.Any()) { return NotFound("Endereços não encontrados"); }
                 //Verificar se o retorno precisa ser Json mesmo.
                 return Json(enderecos);
@@ -112,13 +112,20 @@ namespace MalaDireta.Controllers
             }
         }
 
-        [HttpGet("buscacep")]
-        public ActionResult<String> GetCep(string cep)
+        [HttpGet("buscaendereco")]
+        public ActionResult<Endereco> GetCep(string cep)
         {
             try
             {
-                _cepBusca.ConsultaCEP(cep);
-                return Ok(cep);
+                var retornoCep = _cepClient.Search(cep);
+
+                Endereco endereco = new()
+                {
+                    Logradouro = retornoCep.Logradouro.ToString() + ' ' + retornoCep.Complemento.ToString(),
+                    Cidade = retornoCep.Cidade.ToString() + ' ' + retornoCep.UF.ToString()
+                };
+
+                return endereco;
 
             }
             catch (Exception)
@@ -129,14 +136,13 @@ namespace MalaDireta.Controllers
             }
         }
 
-        [HttpGet("buscaendereco")]
-        public ActionResult<String> GetEnderecoCep(string endereco)
+        [HttpGet("buscacep")]
+        public ActionResult<string> GetEnderecoCep(string endereco)
         {
             try
             {
-                BuscaCEP _buscaCep = new BuscaCEP();
-                _buscaCep.ConsultaEndereco(endereco);
-                return Ok(endereco);
+                var cep = _cepClient.Search(endereco); 
+                return cep.ZipCode.ToString();
             }
             catch (Exception)
             {

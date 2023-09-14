@@ -8,23 +8,23 @@ namespace MalaDireta.Models
     {
         //Criar validações aqui.
 
-        private readonly int id;
-        private readonly string nome;
-        private string telefone;
-        private string email;
-        //private Endereco endereco;
+        private int _id;
+        private string _nome;
+        private string _telefone;
+        private string _email;
+        private Endereco _endereco;
 
         public Cliente()
         {
         }
 
-        public Cliente(int _id, string _nome, string _telefone, string _email/*, Endereco _endereco*/)
+        public Cliente(int id, string nome, string telefone, string email, Endereco endereco)
         {
-            this.id = _id;
-            this.nome = _nome;
-            this.telefone = _telefone;
-            this.email = _email;
-            //this.endereco = _endereco;
+            this._id = id;
+            this._nome = nome;
+            this._telefone = telefone;
+            this._email = email;
+            this._endereco = endereco;
         }
 
         [Key]
@@ -37,7 +37,7 @@ namespace MalaDireta.Models
 
         public string? Email { get; set; }
 
-        //[Required]
-        //public ICollection<Endereco> Locais { get; set; }
+        public Endereco? Endereco { get; set; }
+        
     }
 }

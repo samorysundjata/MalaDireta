@@ -66,19 +66,16 @@ namespace MalaDireta.Migrations
 
                     b.HasKey("EnderecoId");
 
-                    b.ToTable("Enderecoes");
+                    b.ToTable("Enderecos");
                 });
 
             modelBuilder.Entity("MalaDireta.Models.Cliente", b =>
                 {
-                    b.HasOne("MalaDireta.Models.Endereco", null)
-                        .WithMany("Residentes")
+                    b.HasOne("MalaDireta.Models.Endereco", "Endereco")
+                        .WithMany()
                         .HasForeignKey("EnderecoId");
-                });
 
-            modelBuilder.Entity("MalaDireta.Models.Endereco", b =>
-                {
-                    b.Navigation("Residentes");
+                    b.Navigation("Endereco");
                 });
 #pragma warning restore 612, 618
         }
