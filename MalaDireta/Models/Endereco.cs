@@ -10,14 +10,14 @@ namespace MalaDireta.Models
         private string _logradouro;
         private string _cidade;
         private string _estado;
-        private int _cep;
+        private string _cep;
 
         public Endereco()
         {
 
         }
 
-        public Endereco(int id, string logradouro, string cidade, string estado, int cep)
+        public Endereco(int id, string logradouro, string cidade, string estado, string cep)
         {
             _id = id;
             _logradouro = logradouro;
@@ -39,7 +39,7 @@ namespace MalaDireta.Models
         public string Estado { get; set; }
 
         [Required]
-        public int CEP { get; set; }
+        public string CEP { get; set; }
 
         //Colocar validações aqui.
     }

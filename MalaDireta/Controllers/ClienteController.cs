@@ -21,7 +21,6 @@ namespace MalaDireta.Controllers
         {
             try
             {
-
                 var clientes = _context.Clientes.AsNoTracking().ToList();
                 if (!clientes.Any()) { return NotFound("Não há clientes!"); }
                 return Ok(clientes);

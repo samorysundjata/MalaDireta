@@ -4,8 +4,10 @@
 
 namespace MalaDireta.Migrations
 {
+    /// <inheritdoc />
     public partial class MigracaoInicial : Migration
     {
+        /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
@@ -17,7 +19,7 @@ namespace MalaDireta.Migrations
                     Logradouro = table.Column<string>(type: "TEXT", nullable: false),
                     Cidade = table.Column<string>(type: "TEXT", nullable: false),
                     Estado = table.Column<string>(type: "TEXT", nullable: false),
-                    CEP = table.Column<int>(type: "INTEGER", nullable: false)
+                    CEP = table.Column<string>(type: "TEXT", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -51,6 +53,7 @@ namespace MalaDireta.Migrations
                 column: "EnderecoId");
         }
 
+        /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
