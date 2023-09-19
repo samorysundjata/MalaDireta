@@ -11,13 +11,14 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace MalaDireta.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20230830115645_MigracaoInicial")]
+    [Migration("20230919114636_MigracaoInicial")]
     partial class MigracaoInicial
     {
+        /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
-            modelBuilder.HasAnnotation("ProductVersion", "6.0.7");
+            modelBuilder.HasAnnotation("ProductVersion", "7.0.10");
 
             modelBuilder.Entity("MalaDireta.Models.Cliente", b =>
                 {
@@ -51,8 +52,9 @@ namespace MalaDireta.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
-                    b.Property<int>("CEP")
-                        .HasColumnType("INTEGER");
+                    b.Property<string>("CEP")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
 
                     b.Property<string>("Cidade")
                         .IsRequired()
