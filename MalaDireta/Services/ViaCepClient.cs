@@ -6,22 +6,24 @@ namespace MalaDireta.Services
 {
     public class ViaCepClient : IViaCepClient
     {
-        private const string _baseUrl = "https://viacep.com.br"; //Configuration.GetSection("URICep:baseURL");
-
         private readonly HttpClient _httpClient;
 
-        public ViaCepClient()
+        private readonly IConfiguration _configuration;
+        
+
+        public ViaCepClient(IConfiguration configuration)
         {
+            _configuration = configuration;
+
+            string sUri = _configuration["URICep"];
+
             _httpClient = new HttpClient
             {
-                BaseAddress = new Uri(_baseUrl)
+                BaseAddress = new Uri(sUri)
             };
         }
 
-        public ViaCepClient(HttpClient httpClient)
-        {
-            _httpClient = httpClient;
-        }
+        public IConfiguration Configuration => _configuration;
 
         public ViaCepResult Search(string zipCode)
         {
