@@ -25,7 +25,7 @@ namespace MalaDiretaTests
                     logradouro: "Texto",
                     cidade: "Texto",
                     estado: "DD",
-                    cep: 123456
+                    cep: "123456"
                 );
 
 
@@ -48,7 +48,7 @@ namespace MalaDiretaTests
                             "Texto",
                             "Texto",
                             "Texto",
-                            12346
+                            "12346"
                             )
                 );
 
