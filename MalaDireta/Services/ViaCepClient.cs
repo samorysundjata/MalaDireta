@@ -23,8 +23,6 @@ namespace MalaDireta.Services
             };
         }
 
-        public IConfiguration Configuration => _configuration;
-
         public ViaCepResult Search(string zipCode)
         {
             return SearchAsync(zipCode, CancellationToken.None).Result;
