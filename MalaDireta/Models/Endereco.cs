@@ -35,6 +35,8 @@ namespace MalaDireta.Models
         [Required]
         public string Cidade { get; set; }
 
+        //Colocar bairro.
+
         [Required] //Passar para um enum no futuro?
         public string Estado { get; set; }
 

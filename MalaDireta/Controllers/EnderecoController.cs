@@ -119,8 +119,6 @@ namespace MalaDireta.Controllers
             {
                 var retornoCep = _cepClient.Search(cep);
 
-                //if (retornoCep == null) { return false;  }
-
                 Endereco endereco = new()
                 {
                     Logradouro = retornoCep.Logradouro.ToString() + ' ' + retornoCep.Complemento.ToString(),
