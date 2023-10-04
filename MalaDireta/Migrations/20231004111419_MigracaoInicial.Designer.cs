@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace MalaDireta.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20230919114636_MigracaoInicial")]
+    [Migration("20231004111419_MigracaoInicial")]
     partial class MigracaoInicial
     {
         /// <inheritdoc />
@@ -52,11 +52,19 @@ namespace MalaDireta.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
+                    b.Property<string>("Bairro")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
                     b.Property<string>("CEP")
                         .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Cidade")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Complemento")
                         .IsRequired()
                         .HasColumnType("TEXT");
 

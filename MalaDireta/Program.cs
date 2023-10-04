@@ -16,7 +16,6 @@ var app = builder.Build();
 
 app.MapAutenticacaoEndpoints();
 
-
 var environment = app.Environment;
 app.UseExceptionHandling(environment)
     .UseSwaggerMiddleware()

@@ -1,29 +1,23 @@
-﻿
-
-using System.Configuration;
-
-namespace MalaDireta.Services
+﻿namespace MalaDireta.Services
 {
     public class ViaCepClient : IViaCepClient
     {
         private readonly HttpClient _httpClient;
 
         private readonly IConfiguration _configuration;
-        
+
 
         public ViaCepClient(IConfiguration configuration)
         {
             _configuration = configuration;
 
-            string sUri = _configuration["URICep"];
+            string sUri = _configuration["URICep:uri"];
 
             _httpClient = new HttpClient
             {
                 BaseAddress = new Uri(sUri)
             };
         }
-
-        public IConfiguration Configuration => _configuration;
 
         public ViaCepResult Search(string zipCode)
         {
