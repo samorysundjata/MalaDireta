@@ -49,11 +49,19 @@ namespace MalaDireta.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
+                    b.Property<string>("Bairro")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
                     b.Property<string>("CEP")
                         .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Cidade")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Complemento")
                         .IsRequired()
                         .HasColumnType("TEXT");
 

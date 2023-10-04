@@ -17,7 +17,9 @@ namespace MalaDireta.Migrations
                     EnderecoId = table.Column<int>(type: "INTEGER", nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
                     Logradouro = table.Column<string>(type: "TEXT", nullable: false),
+                    Complemento = table.Column<string>(type: "TEXT", nullable: false),
                     Cidade = table.Column<string>(type: "TEXT", nullable: false),
+                    Bairro = table.Column<string>(type: "TEXT", nullable: false),
                     Estado = table.Column<string>(type: "TEXT", nullable: false),
                     CEP = table.Column<string>(type: "TEXT", nullable: false)
                 },
