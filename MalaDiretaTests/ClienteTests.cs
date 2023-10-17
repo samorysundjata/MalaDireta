@@ -18,7 +18,7 @@ namespace MalaDiretaTests
 
             //Act
             cliente.Nome = "Fulano de Tal";
-            //cliente.Email = "fulano@gmail.com";
+            cliente.Email = "fulano@gmail.com";
             cliente.Telefone = "012346789";
             cliente.Endereco = new Endereco(
                     id: 1,
