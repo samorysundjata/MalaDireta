@@ -24,7 +24,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n  \"userName\": \"string\",\r\n  \"password\": \"string\"\r\n}",
+					"raw": "{\r\n  \"userName\": \"user\",\r\n  \"password\": \"pass123\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -105,7 +105,7 @@
 					}
 				},
 				"url": {
-					"raw": "https://localhost:7275/Cliente/3",
+					"raw": "https://localhost:7275/Cliente/2",
 					"protocol": "https",
 					"host": [
 						"localhost"
@@ -113,56 +113,7 @@
 					"port": "7275",
 					"path": [
 						"Cliente",
-						"3"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Cliente",
-			"request": {
-				"method": "PUT",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\r\n        \"clienteId\": 1,\r\n        \"nome\": \"Joe Cabbage\",\r\n        \"telefone\": \"219997475\",\r\n        \"email\": \"cabbagejoe@gmail.com\",\r\n        \"endereco\": null\r\n    }",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "https://localhost:7275/Cliente/1",
-					"protocol": "https",
-					"host": [
-						"localhost"
-					],
-					"port": "7275",
-					"path": [
-						"Cliente",
-						"1"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Cliente",
-			"request": {
-				"method": "DELETE",
-				"header": [],
-				"url": {
-					"raw": "https://localhost:7275/Cliente/3",
-					"protocol": "https",
-					"host": [
-						"localhost"
-					],
-					"port": "7275",
-					"path": [
-						"Cliente",
-						"3"
+						"2"
 					]
 				}
 			},
@@ -175,7 +126,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n  \"nome\": \"Maria das Couves\",\r\n  \"telefone\": \"2199966887\",\r\n  \"email\": \"couvesmaria@gmail.com\",\r\n  \"endereco\": {\r\n    \"enderecoId\": 23,\r\n    \"logradouro\": \"Rua Professor Álvaro Rodrigues, 313/555 - Botafogo\",\r\n    \"cidade\": \"Rio de Janeiro\",\r\n    \"estado\": \"RJ\",\r\n    \"cep\": \"22280040\"\r\n  }\r\n}",
+					"raw": "{\r\n  \"nome\": \"Maria das Couves2\",\r\n  \"telefone\": \"2199966887\",\r\n  \"email\": \"couvesmaria@gmail.com\",\r\n  \"endereco\": {\r\n    \"enderecoId\": 6,\r\n    \"logradouro\": \"Rua Professor Álvaro Rodrigues, 313\",\r\n    \"complemento\": \"apto 555\",\r\n    \"bairro\": \"Botafogo\",\r\n    \"cidade\": \"Rio de Janeiro\",\r\n    \"estado\": \"RJ\",\r\n    \"cep\": \"22280040\"\r\n  }\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -192,6 +143,64 @@
 					"path": [
 						"Cliente",
 						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Cliente",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"clienteId\": 2,\r\n    \"nome\": \"Joe Cabbage Jr\",\r\n    \"telefone\": \"219997475\",\r\n    \"email\": \"cabbagejoe@gmail.com\",\r\n    \"endereco\": null\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:7275/Cliente/2",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "7275",
+					"path": [
+						"Cliente",
+						"2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Cliente",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:7275/Cliente/3",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "7275",
+					"path": [
+						"Cliente",
+						"3"
 					]
 				}
 			},
@@ -298,7 +307,12 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n  \"enderecoId\": 10,\r\n  \"logradouro\": \"string\",\r\n  \"cidade\": \"string\",\r\n  \"estado\": \"string\",\r\n  \"cep\": 0\r\n}"
+					"raw": "{\r\n    \"logradouro\": \"Rua Domingos José Poli, 50\",\r\n    \"complemento\": \"apto 12\",\r\n    \"cidade\": \"Porto Alegre\",\r\n    \"bairro\": \"Restinga\",\r\n    \"estado\": \"RS\",\r\n    \"cep\": \"91790072\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
 				},
 				"url": {
 					"raw": "https://localhost:7275/Endereco/",
@@ -332,7 +346,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"enderecoId\": 1,\r\n    \"logradouro\": \"Rua Professor Álvaro Rodrigues, 337/303 - Botafogo\",\r\n    \"cidade\": \"Rio de Janeiro\",\r\n    \"estado\": \"RJ\",\r\n    \"cep\": 2228040\r\n}",
+					"raw": "{\r\n    \"enderecoId\": 1,\r\n    \"logradouro\": \"Rua Professor Álvaro Rodrigues, 337/603 - Botafogo\",\r\n    \"cidade\": \"Rio de Janeiro\",\r\n    \"estado\": \"RJ\",\r\n    \"cep\": 2228040\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -379,7 +393,7 @@
 					}
 				},
 				"url": {
-					"raw": "https://localhost:7275/Endereco/3",
+					"raw": "https://localhost:7275/Endereco/2",
 					"protocol": "https",
 					"host": [
 						"localhost"
@@ -387,7 +401,45 @@
 					"port": "7275",
 					"path": [
 						"Endereco",
-						"3"
+						"2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "CEP",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:7275/Endereco/buscaendereco?cep=22280069",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "7275",
+					"path": [
+						"Endereco",
+						"buscaendereco"
+					],
+					"query": [
+						{
+							"key": "cep",
+							"value": "22280069"
+						}
 					]
 				}
 			},

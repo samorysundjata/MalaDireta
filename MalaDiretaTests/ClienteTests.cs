@@ -24,6 +24,7 @@ namespace MalaDiretaTests
                     id: 1,
                     logradouro: "Texto",
                     cidade: "Texto",
+                    bairro: "Centro",
                     estado: "DD",
                     cep: "123456"
                 );
@@ -45,6 +46,7 @@ namespace MalaDiretaTests
                         "fulano@gmail.com",
                         new Endereco(
                             100,
+                            "Texto",
                             "Texto",
                             "Texto",
                             "Texto",
