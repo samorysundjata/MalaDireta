@@ -1,41 +1,27 @@
-﻿namespace MalaDireta.Logging
+﻿using System.Collections.Concurrent;
+
+namespace MalaDireta.Logging
 {
     public class CustomLoggerProvider : ILoggerProvider
     {
-        private bool disposedValue;
+        readonly CustomLoggingProviderConfiguration loggerConfig;
+
+        readonly ConcurrentDictionary<string, CustomerLogger> loggers =
+                 new ConcurrentDictionary<string, CustomerLogger>();
+
+        public CustomLoggerProvider(CustomLoggingProviderConfiguration config)
+        {
+            loggerConfig = config;
+        }
 
         ILogger ILoggerProvider.CreateLogger(string categoryName)
         {
-            throw new NotImplementedException();
+            return loggers.GetOrAdd(categoryName, name => new CustomerLogger(name, loggerConfig));
         }
 
-        protected virtual void Dispose(bool disposing)
+        public void Dispose()
         {
-            if (!disposedValue)
-            {
-                if (disposing)
-                {
-                    // TODO: dispose managed state (managed objects)
-                }
-
-                // TODO: free unmanaged resources (unmanaged objects) and override finalizer
-                // TODO: set large fields to null
-                disposedValue = true;
-            }
-        }
-
-        // // TODO: override finalizer only if 'Dispose(bool disposing)' has code to free unmanaged resources
-        // ~CustomLoggerProvider()
-        // {
-        //     // Do not change this code. Put cleanup code in 'Dispose(bool disposing)' method
-        //     Dispose(disposing: false);
-        // }
-
-        void IDisposable.Dispose()
-        {
-            // Do not change this code. Put cleanup code in 'Dispose(bool disposing)' method
-            Dispose(disposing: true);
-            GC.SuppressFinalize(this);
+            loggers.Clear();
         }
     }
 }

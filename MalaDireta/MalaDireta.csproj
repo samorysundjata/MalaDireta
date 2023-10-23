@@ -34,6 +34,7 @@
 
   <ItemGroup>
     <Folder Include="DTOs\Mappings\" />
+    <Folder Include="Logging\log\" />
   </ItemGroup>
 
 </Project>
