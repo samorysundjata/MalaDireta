@@ -1,5 +1,6 @@
 using MalaDireta.Context;
 using MalaDireta.Extensions;
+using MalaDireta.Logging;
 using MalaDireta.Services;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -11,6 +12,11 @@ builder.AddApiSwagger();
 builder.AddPersistence();
 builder.AddAutenticationJwt();
 builder.Services.AddScoped<IViaCepClient, ViaCepClient>();
+
+builder.Logging.AddProvider(new CustomLoggerProvider(new CustomLoggingProviderConfiguration
+{
+    LogLevel = LogLevel.Information
+}));
 
 var app = builder.Build();
 
