@@ -31,7 +31,8 @@
 
         private void EscreverTextoNoArquivo(string mensagem)
         {
-            string caminhoArquivoLog = @"c:\Users\samor\source\repos\MalaDireta\MalaDiretaB\Logging\log\Sundjata_Log.txt";
+            //Colocar o caminho abaixo no appsettings, usar o IConfiguration
+            string caminhoArquivoLog = @"c:\Users\samor\source\repos\MalaDireta\MalaDireta\Logging\log\Sundjata_Log.txt";
             using (StreamWriter streamWriter = new StreamWriter(caminhoArquivoLog, true))
             {
                 try
