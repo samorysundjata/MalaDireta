@@ -35,15 +35,8 @@
             string caminhoArquivoLog = @"c:\Users\samor\source\repos\MalaDireta\MalaDireta\Logging\log\Sundjata_Log.txt";
             using (StreamWriter streamWriter = new StreamWriter(caminhoArquivoLog, true))
             {
-                try
-                {
-                    streamWriter.WriteLine(mensagem);
-                    streamWriter.Close();
-                }
-                catch (Exception ex)
-                {
-                    throw ex;
-                }
+                streamWriter.WriteLine(mensagem);
+                streamWriter.Close();
             }
         }
     }
