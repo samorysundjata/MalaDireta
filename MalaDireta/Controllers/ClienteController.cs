@@ -7,12 +7,12 @@ namespace MalaDireta.Controllers
 {
     [Route("[controller]")]
     [ApiController]
-    public class ClienteController : Controller
+    public class ClienteController : ControllerBase
     {
         private readonly AppDbContext _context;
         private readonly ILogger _logger;
 
-        public ClienteController(AppDbContext context, ILogger logger)
+        public ClienteController(AppDbContext context, ILogger<ClienteController> logger)
         {
             _context = context;
             _logger = logger;

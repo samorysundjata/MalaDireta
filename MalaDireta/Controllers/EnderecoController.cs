@@ -8,13 +8,13 @@ namespace MalaDireta.Controllers
 {
     [Route("[controller]")]
     [ApiController]
-    public class EnderecoController : Controller
+    public class EnderecoController : ControllerBase
     {
         private readonly AppDbContext _context;
         private readonly IViaCepClient _cepClient;
         private readonly ILogger _logger;
 
-        public EnderecoController(AppDbContext context, IViaCepClient cepClient, ILogger logger)
+        public EnderecoController(AppDbContext context, IViaCepClient cepClient, ILogger<EnderecoController> logger)
         {
             _context = context;
             _cepClient = cepClient;
@@ -30,7 +30,7 @@ namespace MalaDireta.Controllers
                 var enderecos = _context.Enderecoes.ToList();
                 if (!enderecos.Any()) { return NotFound("Endereços não encontrados"); }
                 //Verificar se o retorno precisa ser Json mesmo.
-                return Json(enderecos);
+                return (enderecos);
             }
             catch (Exception)
             {

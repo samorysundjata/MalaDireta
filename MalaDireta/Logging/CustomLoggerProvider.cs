@@ -4,12 +4,12 @@ namespace MalaDireta.Logging
 {
     public class CustomLoggerProvider : ILoggerProvider
     {
-        readonly CustomLoggingProviderConfiguration loggerConfig;
+        readonly CustomLoggerProviderConfiguration loggerConfig;
 
         readonly ConcurrentDictionary<string, CustomerLogger> loggers =
                  new ConcurrentDictionary<string, CustomerLogger>();
 
-        public CustomLoggerProvider(CustomLoggingProviderConfiguration config)
+        public CustomLoggerProvider(CustomLoggerProviderConfiguration config)
         {
             loggerConfig = config;
         }
