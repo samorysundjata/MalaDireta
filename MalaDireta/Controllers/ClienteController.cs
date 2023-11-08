@@ -31,7 +31,7 @@ namespace MalaDireta.Controllers
             }
             catch (Exception)
             {
-                _logger.LogInformation($"================= Exceção =  =================");
+                _logger.LogInformation($"================= {DateTime.Now} => Exceção aqui  =================");
                 return StatusCode(StatusCodes.Status500InternalServerError,
                                                "Ocorreu um problema ao tratar a sua solicitação.");
             }
@@ -44,13 +44,15 @@ namespace MalaDireta.Controllers
             {
                 _logger.LogInformation($"================= GET ObterCliente = {id}. =================");
                 var cliente = _context.Clientes.FirstOrDefault(c => c.ClienteId == id);
-                _logger.LogInformation($"================= Obtido o cliente = {cliente.Nome} =================");
-                if (cliente == null) { return NotFound("Não encontrado este cliente"); }                
+                
+                if (cliente != null)  { _logger.LogInformation($"================= Obtido o cliente = {cliente.Nome} ================="); } 
+                else  { return NotFound("Não encontrado este cliente"); }                
+                
                 return cliente;
             }
             catch (Exception)
             {
-                _logger.LogInformation("================= Exceção. =================");
+                _logger.LogInformation($"================= {DateTime.Now} => Exceção aqui  =================");
                 return StatusCode(StatusCodes.Status500InternalServerError,
                     "Ocorreu um problema ao tratar a sua solicitação");
             }
@@ -73,7 +75,7 @@ namespace MalaDireta.Controllers
             }
             catch (Exception)
             {
-                _logger.LogInformation("================= Exceção. =================");
+                _logger.LogInformation($"================= {DateTime.Now} => Exceção aqui  =================");
                 return StatusCode(StatusCodes.Status500InternalServerError,
                     "Ocorreu um problema ao tratar a sua solicitação!");
             }
@@ -95,7 +97,7 @@ namespace MalaDireta.Controllers
             }
             catch (Exception)
             {
-                _logger.LogInformation("================= Execeção =================");
+                _logger.LogInformation($"================= {DateTime.Now} => Exceção aqui  =================");
                 return StatusCode(StatusCodes.Status500InternalServerError,
                     "Ocorreu um problema ao tratar a sua solicitação!");
             }
@@ -119,7 +121,7 @@ namespace MalaDireta.Controllers
             }
             catch (Exception)
             {
-                _logger.LogInformation("================= Informação aqui. =================");
+                _logger.LogInformation($"================= {DateTime.Now} => Exceção aqui  =================");
                 return StatusCode(StatusCodes.Status500InternalServerError,
                     "Ocorreu um problema ao tratar a sua solicitação!");
             }
