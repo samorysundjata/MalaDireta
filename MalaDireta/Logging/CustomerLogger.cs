@@ -3,9 +3,9 @@
     public class CustomerLogger : ILogger
     {
         readonly string loggerName;
-        readonly CustomLoggingProviderConfiguration loggerConfig;
+        readonly CustomLoggerProviderConfiguration loggerConfig;
 
-        public CustomerLogger(string name, CustomLoggingProviderConfiguration config)
+        public CustomerLogger(string name, CustomLoggerProviderConfiguration config)
         {
             loggerName = name;
             loggerConfig = config;

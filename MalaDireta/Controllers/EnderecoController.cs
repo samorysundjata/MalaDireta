@@ -8,13 +8,13 @@ namespace MalaDireta.Controllers
 {
     [Route("[controller]")]
     [ApiController]
-    public class EnderecoController : Controller
+    public class EnderecoController : ControllerBase
     {
         private readonly AppDbContext _context;
         private readonly IViaCepClient _cepClient;
         private readonly ILogger _logger;
 
-        public EnderecoController(AppDbContext context, IViaCepClient cepClient, ILogger logger)
+        public EnderecoController(AppDbContext context, IViaCepClient cepClient, ILogger<EnderecoController> logger)
         {
             _context = context;
             _cepClient = cepClient;
@@ -26,15 +26,14 @@ namespace MalaDireta.Controllers
         {
             try
             {
-                _logger.LogInformation("================= Informação aqui. =================");
+                _logger.LogInformation($"================= {DateTime.Now} => Informação aqui  =================");
                 var enderecos = _context.Enderecoes.ToList();
-                if (!enderecos.Any()) { return NotFound("Endereços não encontrados"); }
-                //Verificar se o retorno precisa ser Json mesmo.
-                return Json(enderecos);
+                if (!enderecos.Any()) { return NotFound("Endereços não encontrados"); }                
+                return (enderecos);
             }
             catch (Exception)
             {
-                _logger.LogInformation("================= Informação aqui. =================");
+                _logger.LogInformation($"================= {DateTime.Now} => Exceção aqui  =================");
                 return StatusCode(StatusCodes.Status500InternalServerError,
                                                "Ocorreu um problema ao tratar a sua solicitação.");
             }
@@ -45,15 +44,15 @@ namespace MalaDireta.Controllers
         {
             try
             {
-                _logger.LogInformation("================= Informação aqui. =================");
+                _logger.LogInformation($"================= {DateTime.Now} => Informação aqui  =================");
                 var endereco = _context.Enderecoes.FirstOrDefault(e => e.EnderecoId == id);
-                _logger.LogInformation("================= Informação aqui. =================");
+                _logger.LogInformation($"================= {DateTime.Now} => Informação aqui  =================");
                 if (endereco is null) { return NotFound("Endereço não encontrado"); }
                 return endereco;
             }
             catch (Exception)
             {
-                _logger.LogInformation("================= Informação aqui. =================");
+                _logger.LogInformation($"================= {DateTime.Now} => Exceção aqui  =================");
                 return StatusCode(StatusCodes.Status500InternalServerError,
                     "Ocorreu um problema ao tratar a sua solicitação!");
             }
@@ -64,19 +63,19 @@ namespace MalaDireta.Controllers
         {
             try
             {
-                _logger.LogInformation("================= Informação aqui. =================");
+                _logger.LogInformation($"================= {DateTime.Now} => POST endereco  =================");
                 if (endereco is null) { return BadRequest("O endereço é nulo!"); }
 
                 _context.Add(endereco);
                 _context.SaveChanges();
 
-                _logger.LogInformation("================= Informação aqui. =================");
+                _logger.LogInformation($"================= {DateTime.Now} => Informação aqui  =================");
                 return new CreatedAtRouteResult("ObterEndereco",
-                    new { id = endereco.EnderecoId }, endereco);
+                    new { id = endereco.EnderecoId }, endereco);                
             }
             catch (Exception)
             {
-                _logger.LogInformation("================= Informação aqui. =================");
+                _logger.LogInformation($"================= {DateTime.Now} => Exceção aqui  =================");
                 return StatusCode(StatusCodes.Status500InternalServerError,
                     "Ocorreu um problema ao tratar a sua solicitação!");
             }
@@ -87,18 +86,18 @@ namespace MalaDireta.Controllers
         {
             try
             {
-                _logger.LogInformation("================= Informação aqui. =================");
+                _logger.LogInformation($"================= {DateTime.Now} => Informação aqui  =================");
                 if (id != endereco.EnderecoId) { return BadRequest($"Endereço não encontrado com este id={id}"); }
 
                 _context.Entry(endereco).State = EntityState.Modified;
                 _context.SaveChanges();
-                _logger.LogInformation("================= Informação aqui. =================");
+                _logger.LogInformation($"================= {DateTime.Now} => Informação aqui  =================");
 
                 return Ok(endereco);
             }
             catch (Exception)
             {
-                _logger.LogInformation("================= Informação aqui. =================");
+                _logger.LogInformation($"================= {DateTime.Now} => Exceção aqui  =================");
                 return StatusCode(StatusCodes.Status500InternalServerError,
                     "Ocorreu um problema ao tratar a sua solicitação!");
             }
@@ -110,20 +109,20 @@ namespace MalaDireta.Controllers
         {
             try
             {
-                _logger.LogInformation("================= Informação aqui. =================");
+                _logger.LogInformation($"================= {DateTime.Now} => Informação aqui  =================");
                 var endereco = _context.Enderecoes.FirstOrDefault(e => e.EnderecoId == id);
                 if (endereco is null) { return NotFound($"Endereco com id={id} não encontrado!"); }
 
                 _context.Enderecoes.Remove(endereco);
                 _context.SaveChanges();
 
-                _logger.LogInformation("================= Informação aqui. =================");
+                _logger.LogInformation($"================= {DateTime.Now} => Informação aqui  =================");
 
                 return Ok(endereco);
             }
             catch (Exception)
             {
-                _logger.LogInformation("================= Informação aqui. =================");
+                _logger.LogInformation($"================= {DateTime.Now} => Exceção aqui  =================");
                 return StatusCode(StatusCodes.Status500InternalServerError,
                     "Ocorreu um problema ao tratar a sua solicitação!");
             }
@@ -134,7 +133,7 @@ namespace MalaDireta.Controllers
         {
             try
             {
-                _logger.LogInformation("================= Informação aqui. =================");
+                _logger.LogInformation($"================= {DateTime.Now} => Informação aqui  =================");
                 var retornoCep = _cepClient.Search(cep);
 
                 Endereco endereco = new()
@@ -142,14 +141,14 @@ namespace MalaDireta.Controllers
                     Logradouro = retornoCep.Logradouro.ToString() + ' ' + retornoCep.Complemento.ToString(),
                     Cidade = retornoCep.Cidade.ToString() + ' ' + retornoCep.UF.ToString()
                 };
-                _logger.LogInformation("================= Informação aqui. =================");
+                _logger.LogInformation($"================= {DateTime.Now} => Informação aqui  =================");
 
                 return endereco;
 
             }
             catch (Exception)
             {
-                _logger.LogInformation("================= Informação aqui. =================");
+                _logger.LogInformation($"================= {DateTime.Now} => Exceção aqui  =================");
                 return StatusCode(StatusCodes.Status500InternalServerError,
                     "Ocorreu um problema ao tratar a sua solicitação!");
             }
@@ -160,13 +159,13 @@ namespace MalaDireta.Controllers
         {
             try
             {
-                _logger.LogInformation("================= Informação aqui. =================");
+                _logger.LogInformation($"================= {DateTime.Now} => Informação aqui  =================");
                 var cep = _cepClient.Search(endereco);
                 return cep.ZipCode.ToString();
             }
             catch (Exception)
             {
-
+                _logger.LogInformation($"================= {DateTime.Now} => Exceção aqui  =================");
                 return StatusCode(StatusCodes.Status500InternalServerError,
                     "Ocorreu um problema ao tratar a sua solicitação!");
             }

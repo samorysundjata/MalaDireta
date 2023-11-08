@@ -13,7 +13,7 @@ builder.AddPersistence();
 builder.AddAutenticationJwt();
 builder.Services.AddScoped<IViaCepClient, ViaCepClient>();
 
-builder.Logging.AddProvider(new CustomLoggerProvider(new CustomLoggingProviderConfiguration
+builder.Logging.AddProvider(new CustomLoggerProvider(new CustomLoggerProviderConfiguration
 {
     LogLevel = LogLevel.Information
 }));
