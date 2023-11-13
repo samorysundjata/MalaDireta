@@ -109,20 +109,20 @@ namespace MalaDireta.Controllers
         {
             try
             {
-                _logger.LogInformation($"================= {DateTime.Now} => Informação aqui  =================");
+                _logger.LogInformation($"================= {DateTime.Now} => Delete o endereco com o id: {id}  =================");
                 var endereco = _context.Enderecoes.FirstOrDefault(e => e.EnderecoId == id);
                 if (endereco is null) { return NotFound($"Endereco com id={id} não encontrado!"); }
 
                 _context.Enderecoes.Remove(endereco);
                 _context.SaveChanges();
 
-                _logger.LogInformation($"================= {DateTime.Now} => Informação aqui  =================");
+                _logger.LogInformation($"================= {DateTime.Now} => Endereco com o id: {id} foi excluido.  =================");
 
                 return Ok(endereco);
             }
             catch (Exception)
             {
-                _logger.LogInformation($"================= {DateTime.Now} => Exceção aqui  =================");
+                _logger.LogInformation($"================= {DateTime.Now} => Exceção do delete.  =================");
                 return StatusCode(StatusCodes.Status500InternalServerError,
                     "Ocorreu um problema ao tratar a sua solicitação!");
             }
@@ -133,7 +133,7 @@ namespace MalaDireta.Controllers
         {
             try
             {
-                _logger.LogInformation($"================= {DateTime.Now} => Informação aqui  =================");
+                _logger.LogInformation($"================= {DateTime.Now} => GetCep: {cep}  =================");
                 var retornoCep = _cepClient.Search(cep);
 
                 Endereco endereco = new()
@@ -141,14 +141,14 @@ namespace MalaDireta.Controllers
                     Logradouro = retornoCep.Logradouro.ToString() + ' ' + retornoCep.Complemento.ToString(),
                     Cidade = retornoCep.Cidade.ToString() + ' ' + retornoCep.UF.ToString()
                 };
-                _logger.LogInformation($"================= {DateTime.Now} => Informação aqui  =================");
+                _logger.LogInformation($"================= {DateTime.Now} => GetCep retorno endereco: {endereco}  =================");
 
                 return endereco;
 
             }
             catch (Exception)
             {
-                _logger.LogInformation($"================= {DateTime.Now} => Exceção aqui  =================");
+                _logger.LogInformation($"================= {DateTime.Now} => Exceção no GetCep  =================");
                 return StatusCode(StatusCodes.Status500InternalServerError,
                     "Ocorreu um problema ao tratar a sua solicitação!");
             }
@@ -159,13 +159,13 @@ namespace MalaDireta.Controllers
         {
             try
             {
-                _logger.LogInformation($"================= {DateTime.Now} => Informação aqui  =================");
+                _logger.LogInformation($"================= {DateTime.Now} => Get endereco:  {endereco}  =================");
                 var cep = _cepClient.Search(endereco);
                 return cep.ZipCode.ToString();
             }
             catch (Exception)
             {
-                _logger.LogInformation($"================= {DateTime.Now} => Exceção aqui  =================");
+                _logger.LogInformation($"================= {DateTime.Now} => Exceção no Get endereco  =================");
                 return StatusCode(StatusCodes.Status500InternalServerError,
                     "Ocorreu um problema ao tratar a sua solicitação!");
             }
