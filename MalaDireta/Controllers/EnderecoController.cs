@@ -28,7 +28,8 @@ namespace MalaDireta.Controllers
             {
                 _logger.LogInformation($"================= {DateTime.Now} => Informação aqui  =================");
                 var enderecos = _context.Enderecoes.ToList();
-                if (!enderecos.Any()) { return NotFound("Endereços não encontrados"); }                
+                if (!enderecos.Any()) { return NotFound("Endereços não encontrados"); }
+                _logger.LogInformation($"================= {DateTime.Now} => Informação aqui  =================");
                 return (enderecos);
             }
             catch (Exception)
@@ -64,12 +65,14 @@ namespace MalaDireta.Controllers
             try
             {
                 _logger.LogInformation($"================= {DateTime.Now} => POST endereco  =================");
+                
                 if (endereco is null) { return BadRequest("O endereço é nulo!"); }
 
                 _context.Add(endereco);
                 _context.SaveChanges();
 
                 _logger.LogInformation($"================= {DateTime.Now} => Informação aqui  =================");
+                
                 return new CreatedAtRouteResult("ObterEndereco",
                     new { id = endereco.EnderecoId }, endereco);                
             }
@@ -87,10 +90,12 @@ namespace MalaDireta.Controllers
             try
             {
                 _logger.LogInformation($"================= {DateTime.Now} => Informação aqui  =================");
+                
                 if (id != endereco.EnderecoId) { return BadRequest($"Endereço não encontrado com este id={id}"); }
 
                 _context.Entry(endereco).State = EntityState.Modified;
                 _context.SaveChanges();
+                
                 _logger.LogInformation($"================= {DateTime.Now} => Informação aqui  =================");
 
                 return Ok(endereco);
@@ -110,6 +115,7 @@ namespace MalaDireta.Controllers
             try
             {
                 _logger.LogInformation($"================= {DateTime.Now} => Delete o endereco com o id: {id}  =================");
+                
                 var endereco = _context.Enderecoes.FirstOrDefault(e => e.EnderecoId == id);
                 if (endereco is null) { return NotFound($"Endereco com id={id} não encontrado!"); }
 
@@ -141,6 +147,7 @@ namespace MalaDireta.Controllers
                     Logradouro = retornoCep.Logradouro.ToString() + ' ' + retornoCep.Complemento.ToString(),
                     Cidade = retornoCep.Cidade.ToString() + ' ' + retornoCep.UF.ToString()
                 };
+
                 _logger.LogInformation($"================= {DateTime.Now} => GetCep retorno endereco: {endereco}  =================");
 
                 return endereco;
@@ -161,6 +168,7 @@ namespace MalaDireta.Controllers
             {
                 _logger.LogInformation($"================= {DateTime.Now} => Get endereco:  {endereco}  =================");
                 var cep = _cepClient.Search(endereco);
+                _logger.LogInformation($"================= {DateTime.Now} => Informação aqui  =================");
                 return cep.ZipCode.ToString();
             }
             catch (Exception)

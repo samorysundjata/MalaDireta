@@ -110,11 +110,13 @@ namespace MalaDireta.Controllers
             try
             {
                 _logger.LogInformation("================= Delete cliente =================");
+                
                 var cliente = _context.Clientes.FirstOrDefault(c => c.ClienteId == id);
                 if (cliente == null) { return NotFound($"Não foi encontrado o cliente com id={id}!"); }
 
                 _context.Clientes.Remove(cliente);
                 _context.SaveChanges();
+
                 _logger.LogInformation($"================= Sucesso {DateTime.Now} =================");
 
                 return Ok(cliente);
