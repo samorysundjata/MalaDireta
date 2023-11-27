@@ -26,15 +26,15 @@ namespace MalaDireta.Controllers
         {
             try
             {
-                _logger.LogInformation($"================= {DateTime.Now} => Informação aqui  =================");
+                _logger.LogInformation($"================= {DateTime.Now} => GET enderecos  =================");
                 var enderecos = _context.Enderecoes.ToList();
                 if (!enderecos.Any()) { return NotFound("Endereços não encontrados"); }
-                _logger.LogInformation($"================= {DateTime.Now} => Informação aqui  =================");
+                _logger.LogInformation($"================= {DateTime.Now} => GET enderecos: {enderecos.Count}  =================");
                 return (enderecos);
             }
             catch (Exception)
             {
-                _logger.LogInformation($"================= {DateTime.Now} => Exceção aqui  =================");
+                _logger.LogInformation($"================= {DateTime.Now} => Exceção em GET enderecos  =================");
                 return StatusCode(StatusCodes.Status500InternalServerError,
                                                "Ocorreu um problema ao tratar a sua solicitação.");
             }
@@ -142,15 +142,23 @@ namespace MalaDireta.Controllers
                 _logger.LogInformation($"================= {DateTime.Now} => GetCep: {cep}  =================");
                 var retornoCep = _cepClient.Search(cep);
 
-                Endereco endereco = new()
+                if (retornoCep != null)
                 {
-                    Logradouro = retornoCep.Logradouro.ToString() + ' ' + retornoCep.Complemento.ToString(),
-                    Cidade = retornoCep.Cidade.ToString() + ' ' + retornoCep.UF.ToString()
-                };
 
-                _logger.LogInformation($"================= {DateTime.Now} => GetCep retorno endereco: {endereco}  =================");
+                    Endereco endereco = new()
+                    {
+                        Logradouro = retornoCep.Logradouro.ToString() + ' ' + retornoCep.Complemento.ToString(),
+                        Cidade = retornoCep.Cidade.ToString() + ' ' + retornoCep.UF.ToString()
+                    };
 
-                return endereco;
+                    _logger.LogInformation($"================= {DateTime.Now} => GetCep retorno endereco: {endereco}  =================");
+                    return endereco;
+
+                }
+                else
+                {
+                    return NotFound();
+                }                
 
             }
             catch (Exception)
