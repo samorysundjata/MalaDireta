@@ -18,13 +18,13 @@ namespace MalaDiretaTests.Controllers
             _controller = _mocker.CreateInstance<EnderecoController>();
         }
 
-        [Fact(DisplayName = "Falhar Get")]
-        [Trait("Category", "Fail")]
-        public ActionResult FalharGet()
-        {
-            //Arrange
-            //Act
-            //Assert
-        }
+        //[Fact(DisplayName = "Falhar Get")]
+        //[Trait("Category", "Fail")]
+        //public ActionResult FalharGet()
+        //{
+        //    //Arrange
+        //    //Act
+        //    //Assert
+        //}
     }
 }

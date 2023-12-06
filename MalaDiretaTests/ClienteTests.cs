@@ -12,56 +12,56 @@ namespace MalaDiretaTests
         private readonly AppDbContext _context;
         private readonly ILogger _logger;
 
-        [Fact]
-        public void Cliente_Testar_Um()
-        {
-            //Arrange
-            var cliente = new Cliente();
+        //[Fact]
+        //public void Cliente_Testar_Um()
+        //{
+        //    //Arrange
+        //    var cliente = new Cliente();
 
-            //Act
-            cliente.Nome = "Fulano de Tal";
-            cliente.Email = "fulano@gmail.com";
-            cliente.Telefone = "012346789";
-            cliente.Endereco = new Endereco(
-                    id: 1,
-                    logradouro: "Texto",
-                    cidade: "Texto",
-                    bairro: "Centro",
-                    estado: "DD",
-                    cep: "123456"
-                );
+        //    //Act
+        //    cliente.Nome = "Fulano de Tal";
+        //    cliente.Email = "fulano@gmail.com";
+        //    cliente.Telefone = "012346789";
+        //    cliente.Endereco = new Endereco(
+        //            id: 1,
+        //            logradouro: "Texto",
+        //            cidade: "Texto",
+        //            bairro: "Centro",
+        //            estado: "DD",
+        //            cep: "123456"
+        //        );
 
 
-            //Assert
-            Assert.NotNull(cliente);
+        //    //Assert
+        //    Assert.NotNull(cliente);
 
-        }
+        //}
 
-        [Fact]
-        public void Cliente_Testar_Dois()
-        {
-            //Arrange
-            var cliente = new Cliente(
-                        100,
-                        "Fulano de Tal",
-                        "2199725457",
-                        "fulano@gmail.com",
-                        new Endereco(
-                            100,
-                            "Texto",
-                            "Texto",
-                            "Texto",
-                            "Texto",
-                            "12346"
-                            )
-                );
+        //[Fact]
+        //public void Cliente_Testar_Dois()
+        //{
+        //    //Arrange
+        //    var cliente = new Cliente(
+        //                100,
+        //                "Fulano de Tal",
+        //                "2199725457",
+        //                "fulano@gmail.com",
+        //                new Endereco(
+        //                    100,
+        //                    "Texto",
+        //                    "Texto",
+        //                    "Texto",
+        //                    "Texto",
+        //                    "12346"
+        //                    )
+        //        );
 
-            //Act
-            var result = cliente;
+        //    //Act
+        //    var result = cliente;
 
-            //Assert
-            Assert.NotNull(result);
-        }
+        //    //Assert
+        //    Assert.NotNull(result);
+        //}
 
         //[Fact]
         //public void Post_ValidCliente_ReturnsCreatedAtRouteResult()

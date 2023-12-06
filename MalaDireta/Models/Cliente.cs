@@ -6,13 +6,12 @@ namespace MalaDireta.Models
     [Table("Clientes")]
     public class Cliente
     {
-        //Criar validações aqui.
-
+        //Criar validações aqui?
         private int _id;
         private string _nome;
         private string _telefone;
-        private string _email;
-        private Endereco _endereco;
+        private string _email; //Precisa de validação para e-mail.
+        private Endereco _endereco; 
 
         public Cliente()
         {
