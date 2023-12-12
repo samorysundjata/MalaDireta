@@ -1,10 +1,15 @@
-﻿using MalaDireta.Models;
+﻿using MalaDireta.Context;
+using MalaDireta.Models;
 using System.Linq.Expressions;
 
 namespace MalaDireta.Repository
 {
-    public class ClientRepository : IClienteRepository
+    public class ClientRepository : Repository<Cliente> , IClienteRepository
     {
+        public ClientRepository(AppDbContext context) : base(context)
+        {           
+        }
+
         public void Add(Cliente entity)
         {
             throw new NotImplementedException();
