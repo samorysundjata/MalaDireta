@@ -34,5 +34,10 @@ namespace MalaDireta.Repository
         {
             throw new NotImplementedException();
         }
+
+        Task<Endereco> IRepository<Endereco>.GetById(Expression<Func<Endereco, bool>> predicate)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
