@@ -1,16 +1,15 @@
 ﻿using MalaDireta.Context;
 using MalaDireta.Models;
 using Microsoft.EntityFrameworkCore;
-using System.Linq.Expressions;
 
 namespace MalaDireta.Repository
 {
-    public class ClientRepository : Repository<Cliente> , IClienteRepository
+    public class ClientRepository : Repository<Cliente>, IClienteRepository
     {
         Task<IEnumerable<Cliente>> IClienteRepository.ClientesEnderecos => throw new NotImplementedException();
 
         public ClientRepository(AppDbContext context) : base(context)
-        {           
+        {
         }
 
         void IClienteRepository.Delete(Task<Cliente> cliente)
@@ -20,7 +19,7 @@ namespace MalaDireta.Repository
 
         public async Task<IEnumerable<Cliente>> ClientesEnderecos()
         {
-           return await Get().OrderBy(c => c.Endereco).ToListAsync();          
+            return await Get().OrderBy(c => c.Endereco).ToListAsync();
         }
     }
 }
