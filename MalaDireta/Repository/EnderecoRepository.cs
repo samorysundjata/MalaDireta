@@ -1,36 +1,24 @@
-﻿using MalaDireta.Models;
+﻿using MalaDireta.Context;
+using MalaDireta.Models;
+using Microsoft.EntityFrameworkCore;
 using System.Linq.Expressions;
 
 namespace MalaDireta.Repository
 {
-    public class EnderecoRepository : IEnderecoRepository
+    public class EnderecoRepository : Repository<Endereco>, IEnderecoRepository
     {
-        public void Add(Endereco entity)
+        public EnderecoRepository(AppDbContext context) : base(context)
         {
-            throw new NotImplementedException();
+
         }
 
-        public void Delete(Endereco entity)
+        public async Task<IEnumerable<Endereco>> GetEnderecos()
         {
-            throw new NotImplementedException();
+            return null;
+            //return await Get().Include(x => x.).ToListAsync();
         }
 
-        public Endereco Get(int id)
-        {
-            throw new NotImplementedException();
-        }
-
-        public IQueryable<Endereco> Get()
-        {
-            throw new NotImplementedException();
-        }
-
-        public Endereco GetById(Expression<Func<Endereco, bool>> predicate)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void Update(Endereco entity)
+        Endereco IEnderecoRepository.Get(int id)
         {
             throw new NotImplementedException();
         }

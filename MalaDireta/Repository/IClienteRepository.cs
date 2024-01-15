@@ -4,6 +4,8 @@ namespace MalaDireta.Repository
 {
     public interface IClienteRepository : IRepository<Cliente>
     {
-        Task<IEnumerable<Cliente>> GetClientesEnderecos();
+        void Delete(Task<Cliente> cliente);
+
+        Task<IEnumerable<Cliente>> ClientesEnderecos { get; }
     }
 }

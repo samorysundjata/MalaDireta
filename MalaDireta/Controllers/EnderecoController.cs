@@ -147,8 +147,8 @@ namespace MalaDireta.Controllers
 
                     Endereco endereco = new()
                     {
-                        Logradouro = retornoCep.Logradouro.ToString() + ' ' + retornoCep.Complemento.ToString(),
-                        Cidade = retornoCep.Cidade.ToString() + ' ' + retornoCep.UF.ToString()
+                        Logradouro = retornoCep.Street.ToString() + ' ' + retornoCep.Complement.ToString(),
+                        Cidade = retornoCep.City.ToString() + ' ' + retornoCep.StateInitials.ToString()
                     };
 
                     _logger.LogInformation($"================= {DateTime.Now} => GetCep retorno endereco: {endereco}  =================");
