@@ -1,6 +1,4 @@
-﻿using MalaDireta.Models;
-
-namespace MalaDiretaTests
+﻿namespace MalaDiretaTests
 {
     public class EnderecoTests
     {

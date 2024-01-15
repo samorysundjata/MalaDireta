@@ -1,9 +1,5 @@
 ﻿using MalaDireta.Context;
-using MalaDireta.Controllers;
-using MalaDireta.Models;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using Moq;
 
 namespace MalaDiretaTests
 {
