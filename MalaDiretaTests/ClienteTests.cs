@@ -1,5 +1,6 @@
 ﻿using MalaDireta.Context;
 using Microsoft.Extensions.Logging;
+using Xunit;
 
 namespace MalaDiretaTests
 {
@@ -7,6 +8,18 @@ namespace MalaDiretaTests
     {
         private readonly AppDbContext _context;
         private readonly ILogger _logger;
+
+        [Fact(DisplayName = "Mudar")]
+        [Trait("Categoria", "Mudar")]
+        public void Trocar_Nome_Metodo()
+        {
+            // Arrange
+
+            // Act
+
+            // Assert
+                
+        }
 
         //[Fact]
         //public void Cliente_Testar_Um()
