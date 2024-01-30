@@ -6,6 +6,14 @@
 
         private readonly IConfiguration _configuration;
 
+        public ViaCepClient()
+        {
+        }
+
+        public ViaCepClient(HttpClient httpClient)
+        {
+            _httpClient = httpClient;
+        }
 
         public ViaCepClient(IConfiguration configuration)
         {
