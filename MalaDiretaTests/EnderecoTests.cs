@@ -1,7 +1,20 @@
-﻿namespace MalaDiretaTests
+﻿using Xunit;
+
+namespace MalaDiretaTests
 {
     public class EnderecoTests
     {
+        [Fact(DisplayName = "Mudar")]
+        [Trait("Categoria", "Mudar")]
+        public void Trocar_Nome_Metodo()
+        {
+            // Arrange
+
+            // Act
+
+            // Assert
+
+        }
         //[Fact]
         //public void Endereco_Testar_Um()
         //{
