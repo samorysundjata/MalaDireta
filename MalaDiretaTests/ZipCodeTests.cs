@@ -84,17 +84,17 @@ namespace MalaDiretaTests
             Assert.Equal("SP", result.StateInitials);
         }
 
-        [Fact(DisplayName = "ValidateSearchByZipCodeWithoutGiaCodeAsync")]
-        [Trait("Categoria", "Mudar")]
-        public async Task ValidateSearchByZipCodeWithoutGiaCodeAsync()
-        {
-            // Arrange
+        //[Fact(DisplayName = "ValidateSearchByZipCodeWithoutGiaCodeAsync")]
+        //[Trait("Categoria", "Mudar")]
+        //public async Task ValidateSearchByZipCodeWithoutGiaCodeAsync()
+        //{
+        //    // Arrange
 
 
-            // Act
+        //    // Act
 
-            // Assert
+        //    // Assert
 
-        }
+        //}
     }
 }
