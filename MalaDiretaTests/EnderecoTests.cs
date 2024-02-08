@@ -1,55 +1,47 @@
-﻿using Xunit;
+﻿using MalaDireta.Models;
+using Xunit;
 
 namespace MalaDiretaTests
 {
     public class EnderecoTests
     {
-        [Fact(DisplayName = "Mudar")]
-        [Trait("Categoria", "Mudar")]
-        public void Trocar_Nome_Metodo()
+        [Fact(DisplayName = "Endereco_Testar_Um")]
+        [Trait("Categoria", "EnderecoTests")]
+        public void Endereco_Testar_Um()
         {
-            // Arrange
+            //Arrange
+            var endereco = new Endereco();
 
-            // Act
+            //Act
+            endereco.Logradouro = "x";
+            endereco.Cidade = "y";
+            endereco.Estado = "x";
+            endereco.Bairro = "y";
+            endereco.CEP = "123465";
 
-            // Assert
-
+            //Assert
+            Assert.NotNull(endereco);
         }
-        //[Fact]
-        //public void Endereco_Testar_Um()
-        //{
-        //    //Arrange
-        //    var endereco = new Endereco();
 
-        //    //Act
-        //    endereco.Logradouro = "x";
-        //    endereco.Cidade = "y";
-        //    endereco.Estado = "x";
-        //    endereco.Bairro = "y";
-        //    endereco.CEP = "123465";
+        [Fact(DisplayName = "Endereco_Testar_Dois")]
+        [Trait("Categoria", "EnderecoTests")]
+        public void Endereco_Testar_Dois()
+        {
+            //Arrange
+            var endereco = new Endereco(
+                    1,
+                    "x",
+                    "z",
+                    "y",
+                    "RS",
+                    "123456"
+                );
 
-        //    //Assert
-        //    Assert.NotNull(endereco);
-        //}
+            //Act
+            var result = endereco;
 
-        //[Fact]
-        //public void Endereco_Testar_Dois()
-        //{
-        //    //Arrange
-        //    var endereco = new Endereco(
-        //            1,
-        //            "x",
-        //            "z",
-        //            "y",
-        //            "RS",
-        //            "123456"
-        //        );
-
-        //    //Act
-        //    var result = endereco;
-
-        //    //Assert
-        //    Assert.NotNull(result);
-        //}
+            //Assert
+            Assert.NotNull(result);
+        }
     }
 }
